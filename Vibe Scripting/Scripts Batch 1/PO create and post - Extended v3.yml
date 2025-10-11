@@ -1,0 +1,241 @@
+name: PO create and post - Extended Actions
+description: Test recording with additional BC actions
+telemetryId: bbe86d61-1544-48b2-8eb8-a6577312f960
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: invoke
+    target:
+      - page: Business Manager Role Center
+        runtimeRef: b0
+      - action: <Page Purchase Order>
+    description: Invoke <caption>Purchase Order</caption>
+  - type: page-shown
+    source:
+      page: Purchase Order
+    modal: false
+    runtimeId: b3z4
+    description: Page <caption>New - Purchase Order</caption> was shown.
+  - type: focus
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - field: Buy-from Vendor No.
+    description: Focus <caption>Vendor No.</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - field: Buy-from Vendor No.
+    value: "2000"
+    description: Input <value>2000</value> into <caption>Vendor No.</caption>
+  # Set Ship-to to Location to make Location Code visible
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - field: ShippingOptionWithLocation
+    value: 1
+    description: Input <value>1</value> into <caption>Ship-to</caption>
+  # Set header fields
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - field: Payment Terms Code
+    value: "30D"
+    description: Input <value>30D</value> into <caption>Payment Terms Code</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - field: Location Code
+    value: "BLUE"
+    description: Input <value>BLUE</value> into <caption>Location Code</caption>
+  # First line
+  - type: focus
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    description: Focus <caption>No.</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    value: "1896-s"
+    description: Input <value>1896-s</value> into <caption>No.</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: Quantity
+    value: "1"
+    description: Input <value>1</value> into <caption>Quantity</caption>
+  # Second line
+  - type: set-current-row
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+    targetRecord:
+      relative: 1
+    description: Set current row in <caption>Control1</caption>
+  - type: focus
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    description: Focus <caption>No.</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    value: "1900-S"
+    description: Input <value>1900-S</value> into <caption>No.</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: Quantity
+    value: "5"
+    description: Input <value>5</value> into <caption>Quantity</caption>
+  # View Statistics
+  - type: invoke
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - action: Statistics
+    description: Open Purchase Order Statistics
+  - type: page-shown
+    source:
+      page: Purchase Order Statistics
+    modal: true
+    runtimeId: b5z4
+    description: Page <caption>Purchase Order Statistics</caption> was shown.
+  - type: invoke
+    target:
+      - page: Purchase Order Statistics
+        runtimeRef: b5z4
+    invokeType: Ok
+    description: Close Statistics page
+  # Add Item Charge
+  - type: set-current-row
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+    targetRecord:
+      relative: 1
+    description: Set current row in <caption>Control1</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: Type
+    value: "Charge (Item)"
+    description: Set line type to Item Charge
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    value: "FREIGHT"
+    description: Input <value>FREIGHT</value> into <caption>No.</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: Direct Unit Cost
+    value: "50"
+    description: Input freight charge of <value>50</value>
+  # Assign Item Charge
+  - type: invoke
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - action: Item Charge Assignment
+    description: Open Item Charge Assignment
+  - type: page-shown
+    source:
+      page: Item Charge Assignment (Purch)
+    modal: true
+    runtimeId: b6z4
+    description: Page <caption>Item Charge Assignment</caption> was shown.
+  - type: invoke
+    target:
+      - page: Item Charge Assignment (Purch)
+        runtimeRef: b6z4
+      - action: Suggest Item Charge Assignment
+    description: Suggest Item Charge Assignment
+  - type: invoke
+    target:
+      - page: Item Charge Assignment (Purch)
+        runtimeRef: b6z4
+    invokeType: Ok
+    description: Close Item Charge Assignment
+  # Post the order
+  - type: invoke
+    target:
+      - page: Purchase Order
+        runtimeRef: b3z4
+      - action: Post
+    parameters: {}
+    description: Invoke <caption>Post...</caption>
+  - type: page-shown
+    source:
+      page: null
+      automationId: 8da61efd-0002-0003-0507-0b0d1113171d
+      caption: Choose
+    modal: true
+    runtimeId: b4ke
+    description: Page <caption>Choose</caption> was shown.
+  - type: invoke
+    target:
+      - page: null
+        automationId: 8da61efd-0002-0003-0507-0b0d1113171d
+        caption: Choose
+        runtimeRef: b4ke
+    invokeType: Ok
+    description: Invoke Ok on <caption>Choose</caption>
+  - type: page-closed
+    source:
+      page: Purchase Order
+    runtimeId: b3z4
+    description: Page <caption>New - Purchase Order - 106020 ∙ First Up Consultants</caption> was closed.

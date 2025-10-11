@@ -1,0 +1,13 @@
+name: Change to Location Code - Recording
+description: Test recording
+telemetryId: e3b0064f-357b-4f73-9d0e-7423b6053707
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: bvf
+      - field: ShippingOptionWithLocation
+    value: 1
+    description: Input <value>1</value> into <caption>Ship-to</caption>

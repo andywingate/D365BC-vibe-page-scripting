@@ -1,0 +1,112 @@
+name: Add lines - Recording
+description: Test recording
+telemetryId: c9e804a4-792f-4eda-8cd3-c29fc62e132e
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: set-current-row
+    target:
+      - page: Purchase Order
+        runtimeRef: b23n
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+    targetRecord:
+      relative: 1
+    description: Set current row in <caption>Control1</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b23n
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    value: ""
+    isFilterAsYouType: true
+    description: Input <value></value> into <caption>No.</caption>
+  - type: focus
+    target:
+      - page: Purchase Order
+        runtimeRef: b23n
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    description: Focus <caption>No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:No.
+    modal: false
+    runtimeId: b2na
+    description: Page <caption>Select</caption> was shown.
+  - type: invoke
+    target:
+      - page: lookup:No.
+        runtimeRef: b2na
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>Item</caption>
+  - type: page-closed
+    source:
+      page: lookup:No.
+    runtimeId: b2na
+    description: Page <caption>Select</caption> was closed.
+  - type: set-current-row
+    target:
+      - page: Purchase Order
+        runtimeRef: b23n
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+    targetRecord:
+      relative: 1
+    description: Set current row in <caption>Control1</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b23n
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    value: ""
+    isFilterAsYouType: true
+    description: Input <value></value> into <caption>No.</caption>
+  - type: focus
+    target:
+      - page: Purchase Order
+        runtimeRef: b23n
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    description: Focus <caption>No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:No.
+    modal: false
+    runtimeId: b2o1
+    description: Page <caption>Select</caption> was shown.
+  - type: set-current-row
+    target:
+      - page: lookup:No.
+        runtimeRef: b2o1
+      - repeater: repeater
+    targetRecord:
+      relative: 3
+    description: Set current row in <caption>Item</caption>
+  - type: invoke
+    target:
+      - page: lookup:No.
+        runtimeRef: b2o1
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>Item</caption>
+  - type: page-closed
+    source:
+      page: lookup:No.
+    runtimeId: b2o1
+    description: Page <caption>Select</caption> was closed.

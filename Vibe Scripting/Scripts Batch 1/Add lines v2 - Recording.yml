@@ -1,0 +1,204 @@
+name: Add lines v2 - Recording
+description: Test recording
+telemetryId: 260b34a7-cc7f-410d-87c1-7d7dcb6ccc7a
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: invoke
+    target:
+      - page: Business Manager Role Center
+        runtimeRef: b0
+      - action: <Page Purchase Order>
+    description: Invoke <caption>Purchase Order</caption>
+  - type: page-shown
+    source:
+      page: Purchase Order
+    modal: false
+    runtimeId: b3vw
+    description: Page <caption>New - Purchase Order</caption> was shown.
+  - type: focus
+    target:
+      - page: Purchase Order
+        runtimeRef: b3vw
+      - field: Buy-from Vendor No.
+    description: Focus <caption>Vendor No.</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3vw
+      - field: Buy-from Vendor No.
+    value: "2000"
+    isFilterAsYouType: true
+    description: Input <value>2000</value> into <caption>Vendor No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:Buy-from Vendor No.
+    modal: false
+    runtimeId: b4f0
+    description: Page <caption>Select</caption> was shown.
+  - type: invoke
+    target:
+      - page: lookup:Buy-from Vendor No.
+        runtimeRef: b4f0
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>Vendor</caption>
+  - type: page-closed
+    source:
+      page: lookup:Buy-from Vendor No.
+    runtimeId: b4f0
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3vw
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    value: ""
+    isFilterAsYouType: true
+    description: Input <value></value> into <caption>No.</caption>
+  - type: focus
+    target:
+      - page: Purchase Order
+        runtimeRef: b3vw
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    description: Focus <caption>No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:No.
+    modal: false
+    runtimeId: b4gf
+    description: Page <caption>Select</caption> was shown.
+  - type: set-current-row
+    target:
+      - page: lookup:No.
+        runtimeRef: b4gf
+      - repeater: repeater
+    targetRecord:
+      relative: 1
+    description: Set current row in <caption>Item</caption>
+  - type: invoke
+    target:
+      - page: lookup:No.
+        runtimeRef: b4gf
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>Item</caption>
+  - type: page-closed
+    source:
+      page: lookup:No.
+    runtimeId: b4gf
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3vw
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: Quantity
+    value: "1"
+    description: Input <value>1</value> into <caption>Quantity</caption>
+  - type: set-current-row
+    target:
+      - page: Purchase Order
+        runtimeRef: b3vw
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+    targetRecord:
+      relative: 1
+    description: Set current row in <caption>Control1</caption>
+  - type: focus
+    target:
+      - page: Purchase Order
+        runtimeRef: b3vw
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: FilteredTypeField
+    description: Focus <caption>Type</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3vw
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    value: ""
+    isFilterAsYouType: true
+    description: Input <value></value> into <caption>No.</caption>
+  - type: focus
+    target:
+      - page: Purchase Order
+        runtimeRef: b3vw
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    description: Focus <caption>No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:No.
+    modal: false
+    runtimeId: b4h4
+    description: Page <caption>Select</caption> was shown.
+  - type: set-current-row
+    target:
+      - page: lookup:No.
+        runtimeRef: b4h4
+      - repeater: repeater
+    targetRecord:
+      relative: 2
+    description: Set current row in <caption>Item</caption>
+  - type: invoke
+    target:
+      - page: lookup:No.
+        runtimeRef: b4h4
+      - repeater: repeater
+    parameters:
+      AlwaysCommit: true
+    description: Invoke row on <caption>Item</caption>
+  - type: page-closed
+    source:
+      page: lookup:No.
+    runtimeId: b4h4
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b3vw
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: Quantity
+    value: "1"
+    description: Input <value>1</value> into <caption>Quantity</caption>
+  - type: set-current-row
+    target:
+      - page: Purchase Order
+        runtimeRef: b3vw
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+    targetRecord:
+      relative: 1
+    description: Set current row in <caption>Control1</caption>
+  - type: set-current-row
+    target:
+      - page: Purchase Order
+        runtimeRef: b3vw
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+    targetRecord:
+      relative: -1
+    description: Set current row in <caption>Control1</caption>
