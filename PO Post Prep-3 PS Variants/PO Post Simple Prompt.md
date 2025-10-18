@@ -13,7 +13,7 @@
 1. **Create Test Iteration:** Generate ONE test script variation using CSV data, validate it works completely.
 1. **Generate Full Series:** Only after validating the pattern works, create the complete series of script iterations using all CSV data for field values.
 1. **Final Quality Check:** Ensure all scripts follow clean patterns, have proper dependencies set, and include clear documentation.
-1. **Copy any scripts created to the Run Me Folder** please make a copy of any scripts you created or modified and save them in the "C:\Users\AndrewWingate\andy@wingateuk.com\OneDrive\Presentations & Colabs\2025-10 SCS 2025\BC\Script Prompts\Run Me" folder - I will run from there and then delete - so I always know which ones i have tested.
+1. **Copy any scripts created to the Run Me Folder** please make a copy of any scripts you created or modified and save them in the ".\Script Prompts\Run Me" folder - I will run from there and then delete - so I always know which ones i have tested.
 
 
 **Format:**

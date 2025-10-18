@@ -4,6 +4,24 @@ BC.code-workspace
 # VS Code settings
 .vscode/
 
+# ===== BC PAGE SCRIPTING SPECIFIC =====
+# Credentials and sensitive information
+**/config.local.*
+**/secrets.*
+**/.env
+**/.env.local
+npx-run.local.ps1
+**/credentials.json
+
+# Test output and logs
+**/test-results/
+**/playwright-report/
+**/allure-results/
+
+# Personal workspace files with sensitive paths
+*.personal.*
+*.private.*
+
 # Windows thumbnail cache files
 Thumbs.db
 Thumbs.db:encryptable

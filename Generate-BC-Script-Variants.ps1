@@ -9,7 +9,7 @@ param(
     [string]$ProjectFolder,
     
     [Parameter(Mandatory=$false)]
-    [string]$OutputFolder = "C:\Users\AndrewWingate\andy@wingateuk.com\OneDrive\Presentations & Colabs\2025-10 SCS 2025\BC\Script Prompts\Run Me"
+    [string]$OutputFolder = ".\Script Prompts\Run Me"
 )
 
 # Function to read data file and return array of values
