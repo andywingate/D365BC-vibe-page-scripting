@@ -3,7 +3,7 @@
 - You must ALWAYS request reference recordings before implementing any new BC actions. Never guess or improvise - follow exact patterns from examples.
 - Do not generate new steps in scripts unless you have been provided an example that shows the exact pattern.
 - You must be provided with an explanation of the business processes we are following in MD format so you can understand the steps and help to use this language when debugging issues
-- The main task is to help me create a series of scrip files based on the happy path using the additonal data i have provided in CSV format for alternative field values. 
+- The main task is to help me create a series of scrip files based on the happy path using the additional data I have provided in CSV format for alternative field values. 
 
 
 **Steps:**

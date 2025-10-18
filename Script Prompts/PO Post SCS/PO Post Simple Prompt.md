@@ -12,13 +12,12 @@
 1. **Plan Data Integration:** Review all CSV files containing field values and plan how to create script variations using this data.
 1. **Create Test Iteration:** Generate ONE test script variation using CSV data, validate it works completely.
 1. **Generate Full Series:** Only after validating the pattern works, create the complete series of script iterations using all CSV data for field values.
-1. **Final Quality Check:** Ensure all scripts follow clean patterns, have proper dependencies set, and include clear documentation.
-1. **Copy any scripts created to the Run Me Folder** please make a copy of any scripts you created or modified and save them in the "C:\Users\AndrewWingate\andy@wingateuk.com\OneDrive\Presentations & Colabs\2025-10 SCS 2025\BC\Script Prompts\Run Me" folder - I will run from there and then delete - so I always know which ones i have tested.
+1. **Final Quality Check:** Ensure all scripts follow known patterns (i.e. tested examples have been provided ), and include clear documentation.
 
 
 **Format:**
 - Use YAML page script format for Business Central
-- Follow the clean patterns shown in examples
+- Follow the known patterns shown in example scripts or this file
 
 **Example:**
 Base all work on proven patterns added to the project folders once we start working  
@@ -89,4 +88,4 @@ Reference Patterns for the field to change in the variants
     description: Page <caption>Select</caption> was closed.
 
 
-In the first variant script please use alternative values from the Items and Location files provided as context. Start off by creating a single variant script for me to test
+In the first variant script please use alternative values from the Items and Location files provided as context. Start off by creating a single variant script for me to test, I will confirm this then we can move onto using a PowerShell script to create a larger volume of variant test files.

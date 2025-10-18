@@ -9,46 +9,64 @@ This repository contains comprehensive guidance and resources for generating rel
 ### Main Repository Organization
 
 ```
-BC Scripts/
-├── README.md                    # This master guide
-├── Page Script Prompt Engineering Best Practices.md
-├── PO Scripts/                  # Legacy examples and patterns
-└── [Project Folders]/          # Individual project subfolders
-    ├── Prompt-[##] [Name].md   # Project-specific prompt template
-    ├── TODO-[ProjectName].md   # Project to-do and progress tracking
-    ├── [Reference Scripts]/    # Example starter scripts (.yml)
-    ├── [Data Files]/           # CSV files for script variations
-    └── [Generated Scripts]/    # Output folder for generated scripts
+BC/
+├── Script Prompts/                     # Active project preparation folders
+│   ├── PO Post Prep-1/                # Project preparation folder 1
+│   ├── PO Post Prep-2/                # Project preparation folder 2
+│   ├── PO Post SCS/                    # SCS demonstration project
+│   └── Run Me/                         # Generated script output folder
+└── Vibe Scripting/                     # Legacy examples and working scripts
+    ├── PO Scripts/                     # Clean reference scripts
+    ├── Scripts Batch 1/                # First batch of generated scripts
+    ├── ScriptBatch2/                   # Second batch folder
+    └── SCS Demo 1/                     # Demo project example
 ```
 
 ### Project Subfolder Requirements
 
 Each BC page scripting project should have its own subfolder containing:
 
-1. **Base Prompt File** (`Prompt-[##] [Name].md`)
-   - Project-specific instructions following the proven template
-   - Clear definition of the business process
-   - Specific field requirements and CSV data integration points
+1. **Process Documentation File** (`PO Post Simple Process.md`)
+   - Clear business process documentation
+   - Step-by-step workflow description
+   - Field requirements and dependencies
 
-2. **Project To-Do File** (`TODO-[ProjectName].md`)
+2. **AI Prompt Template** (`PO Post Simple Prompt.md`)
+   - Project-specific instructions following the proven template
+   - Clear definition of the business process for AI
+   - Specific field requirements and data integration points
+
+3. **Project To-Do File** (`TODO-[ProjectName].md`) *(for active projects)*
    - Working document for progress tracking
    - Milestones and testing checkpoints
    - Issues encountered and resolutions
 
-3. **Reference Scripts**
-   - Clean example scripts (.yml files)
-   - Raw recordings for comparison
-   - Proven patterns specific to the project
-
-4. **Data Files**
-   - CSV files containing field values for script variations
+4. **Data Files** *(as needed)*
+   - Text files containing field values for script variations (e.g., `Items`, `Locations`)
    - Data dictionaries or field mapping documentation
    - Sample data for testing
 
-5. **Generated Output**
-   - Final working scripts
+5. **Generated Output** *(in separate Run Me/ folder)*
+   - Final working scripts with variations
    - Documentation of successful patterns
    - Performance metrics and test results
+
+### Legacy Structure (Vibe Scripting folder)
+
+Contains proven examples and working patterns:
+
+1. **Reference Scripts** (`PO Scripts/`)
+   - Clean example scripts (.yml files)
+   - Proven patterns specific to purchase orders
+
+2. **Script Batches** (`Scripts Batch 1/`, `ScriptBatch2/`)
+   - Raw recordings for comparison
+   - Generated script variations
+   - Data files (e.g., `Itemcodes.txt`)
+
+3. **Demo Projects** (`SCS Demo 1/`)
+   - Complete project examples
+   - Template patterns for new projects
 
 ## AI Instructions for Future BC Page Script Generation
 
@@ -151,31 +169,34 @@ Each BC page scripting project should have its own subfolder containing:
 ### Starting a New BC Page Scripting Project
 
 1. **Create Project Subfolder**
-   - Name: `[Project Number] - [Business Process]` (e.g., "01 - Purchase Order Posting")
-   - Location: Under main BC Scripts folder
+   - Name: `[Project Description]` (e.g., "PO Post SCS", "PO Post Prep-1")
+   - Location: Under `Script Prompts/` folder for active projects
 
 2. **Setup Project Files**
-   - Copy and customize the base prompt template as `Prompt-[##] [Name].md`
-   - Create `TODO-[ProjectName].md` for tracking progress
-   - Gather reference recordings and clean scripts
-   - Prepare CSV data files with field values
+   - Create `PO Post Simple Process.md` with business process documentation
+   - Create `PO Post Simple Prompt.md` for AI prompt template
+   - Create data files as needed (`Items`, `Locations`, etc.)
+   - Create `TODO-[ProjectName].md` for tracking progress (if needed)
 
 3. **Initialize AI Chat Session**
    - Attach the project prompt file
-   - Include reference scripts and patterns as context
+   - Include reference scripts from `Vibe Scripting/PO Scripts/` as context
    - Provide business process documentation
    - Start with Step 1: Verify Prerequisites
 
 4. **Follow Proven Methodology**
    - Build and test clean reference script first
-   - Create single test variation with CSV data
+   - Create single test variation with data files
    - Generate full series only after validation
+   - Output to `Script Prompts/Run Me/` folder
    - Document lessons learned in the TODO file
 
 ### Existing Project Examples
 
-- **PO Scripts/**: Legacy purchase order examples and patterns
-- **SCS Demo 1/**: Purchase order posting demonstration project
+- **Vibe Scripting/PO Scripts/**: Clean reference scripts and patterns
+- **Vibe Scripting/Scripts Batch 1/**: Legacy batch generation examples
+- **Vibe Scripting/SCS Demo 1/**: Complete demo project with prompt and TODO
+- **Script Prompts/PO Post SCS/**: Current active project with data files
 
 ## 🎯 Complete Prompt Template for Future BC Page Script Generation
 
@@ -242,6 +263,8 @@ Base all work on proven patterns added to the project folders once we start work
 
 ## 🔗 Related Resources
 
-- `Page Script Prompt Engineering Best Practices.md` - Detailed presentation materials
-- `PO Scripts/` - Legacy examples and established patterns
+- `Vibe Scripting/How to Create ADO Test Items Guide.md` - ADO integration guidance
+- `Vibe Scripting/PO Scripts/` - Clean reference scripts and established patterns
+- `Vibe Scripting/Scripts Batch 1/` - Legacy examples and batch generation patterns
+- `Script Prompts/` - Active project preparation and current work
 - Individual project folders for specific business processes
