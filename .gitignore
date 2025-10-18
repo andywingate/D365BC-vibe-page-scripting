@@ -19,8 +19,7 @@ npx-run.local.ps1
 **/allure-results/
 
 # Generated variant scripts (exclude from repo - too many files)
-**/PS Variants Scripts/
-**/Variants/PS Variants Scripts/
+**/Variants/PS Variants Scripts/*.yml
 
 # Personal workspace files with sensitive paths
 *.personal.*
