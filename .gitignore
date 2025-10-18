@@ -18,6 +18,10 @@ npx-run.local.ps1
 **/playwright-report/
 **/allure-results/
 
+# Generated variant scripts (exclude from repo - too many files)
+**/PS Variants Scripts/
+**/Variants/PS Variants Scripts/
+
 # Personal workspace files with sensitive paths
 *.personal.*
 *.private.*
