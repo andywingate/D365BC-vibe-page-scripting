@@ -8,13 +8,15 @@ This repository contains comprehensive guidance and resources for generating rel
 
 **New to this project?** Follow these steps:
 
-1. **Review Structure** - Understand the difference between `Script Prompts/` (active projects) and `Vibe Scripting/` (proven examples)
-2. **Study Examples** - Review `Vibe Scripting/PO Scripts/` for clean reference patterns
-3. **Create Project Folder** - Set up a new subfolder under `Script Prompts/` with required files
+1. **Review Structure** - Understand the project organization with multiple PO Post preparation folders
+2. **Study Examples** - Review the various `PO Post Prep-X/` folders for working patterns
+3. **Create Project Folder** - Set up a new subfolder with required files (BASE script, data files, documentation)
 4. **Use the Template** - Copy the complete prompt template (see below) for your AI session
 5. **Follow the Workflow** - Work through the 6-step methodology systematically
 
 **Key Principle:** Always request reference recordings before implementing new actions. Never guess!
+
+📖 **For a detailed step-by-step walkthrough, see [GETTING_STARTED.md](GETTING_STARTED.md)**
 
 ## 🔒 Security & Privacy Notice
 
@@ -39,70 +41,103 @@ This repository contains comprehensive guidance and resources for generating rel
 
 ```
 BC/
-├── Script Prompts/                     # ✅ ACTIVE: Current project work
-│   ├── Generate-BC-Script-Variants.ps1 # PowerShell automation script
-│   ├── PO Post Prep-1/                 # Project preparation folder 1
-│   ├── PO Post Prep-2/                 # Project preparation folder 2
-│   ├── PO Post Prep-3 PS Variants/     # Enhanced PS variant generation
-│   ├── PO Post SCS/                    # 🎯 SCS demonstration project
-│   └── Run Me/                         # ✅ Generated script output folder
-└── Vibe Scripting/                     # 📚 LEGACY: Proven examples & patterns
-    ├── How to Create ADO Test Items Guide.md
-    ├── PO Scripts/                     # ⭐ Clean reference scripts
-    ├── Scripts Batch 1/                # First batch of generated scripts
-    ├── ScriptBatch2/                   # Second batch folder
-    └── SCS Demo 1/                     # Demo project example
+├── Generate-BC-Script-Variants.ps1     # PowerShell automation script
+├── npx-run.ps1                         # Script execution helper
+├── GETTING_STARTED.md                  # 📖 Start here for step-by-step guidance
+├── SECURITY.md                         # 🔒 Security guidelines and setup
+├── README.md                           # This file
+│
+├── PO Post Prep-1/                     # Project preparation folder 1
+│   ├── Items                           # Item codes for variants
+│   ├── Locations                       # Location codes for variants
+│   ├── PO Post test BASE.yml           # Base script template
+│   ├── PO Post Simple Process.md       # Business process documentation
+│   ├── PO Post Simple Prompt.md        # AI prompt template
+│   └── Variants/                       # Generated script variations
+│       ├── PO Post test Variant-1896S-BLUE.yml
+│       ├── PO Post test Variant-1896S-EAST.yml
+│       ├── PO Post test Variant-1900S-MAIN.yml
+│       └── ... (multiple variants)
+│
+├── PO Post Prep-2/                     # Project preparation folder 2
+│   ├── Items                           # Item codes for variants
+│   ├── Locations                       # Location codes for variants
+│   ├── PO POST Simple.yml              # Base script
+│   ├── PO Post Simple Process.md       # Process documentation
+│   ├── PO Post Simple Prompt.md        # AI prompt
+│   └── PO POST Simple Variant-*.yml    # Generated variants
+│
+├── PO Post Prep-3/                     # Raw recordings and test scripts
+│   ├── Itemcodes.txt                   # Test item data
+│   ├── PO create and post - *.yml      # Various test scripts
+│   ├── Add lines - Recording.yml       # Recording examples
+│   └── ... (multiple recordings and variants)
+│
+├── PO Post Prep-3 PS Variants/         # Enhanced PS variant generation
+│   ├── Generate-BC-Script-Variants-Enhanced.ps1
+│   ├── npx-run.ps1
+│   ├── PO Post test BASE.yml
+│   ├── PO Post Simple Process.md
+│   ├── PO Post Simple Prompt.md
+│   ├── PS script copilot-instructions.md
+│   ├── var-items                       # Item variations
+│   ├── var-locations                   # Location variations
+│   ├── var-vendors                     # Vendor variations
+│   └── Variants/                       # Generated scripts and analysis
+│       ├── AI_Analysis_Guide.md
+│       ├── AI_Quick_Reference.md
+│       ├── BC_Test_Results_Analysis.md
+│       ├── Quick_Analysis.ps1
+│       └── ... (multiple generated variants)
+│
+└── PO Post SCS/                        # 🎯 SCS demonstration project
+    ├── BASE Recording.yml              # Base recording
+    ├── Items                           # Item data
+    ├── Locations                       # Location data
+    ├── PO Post Simple Process.md       # Process docs
+    ├── PO Post Simple Prompt.md        # Prompt template
+    └── Variants/                       # Generated variants
+        └── PO Post test Variant-1896S-BLUE.yml
 ```
 
-**Key Distinction:**
-- **Script Prompts/** = Active development, new projects, current work
-- **Vibe Scripting/** = Proven patterns, reference examples, legacy scripts
+**Key Organization:**
+- **Root Level Files**: Core automation scripts and documentation
+- **PO Post Prep-X Folders**: Different preparation stages/approaches for PO posting automation
+- **Each Project Folder Contains**: BASE script, data files (Items/Locations), process documentation, and generated variants
 
 ### Project Subfolder Requirements
 
 Each BC page scripting project should have its own subfolder containing:
 
-1. **Process Documentation File** (`PO Post Simple Process.md`)
+1. **BASE Script File** (`*.yml`)
+   - Tested base recording that works successfully
+   - Clean pattern with artifacts removed
+   - Serves as template for variant generation
+
+2. **Process Documentation File** (`PO Post Simple Process.md`)
    - Clear business process documentation
    - Step-by-step workflow description
    - Field requirements and dependencies
 
-2. **AI Prompt Template** (`PO Post Simple Prompt.md`)
+3. **AI Prompt Template** (`PO Post Simple Prompt.md`)
    - Project-specific instructions following the proven template
    - Clear definition of the business process for AI
    - Specific field requirements and data integration points
 
-3. **Project To-Do File** (`TODO-[ProjectName].md`) *(for active projects)*
+4. **Data Files** (e.g., `Items`, `Locations`, `var-items`, `var-vendors`)
+   - Text files containing field values for script variations
+   - One value per line format
+   - Data must exist in BC test environment
+
+5. **Generated Output** (`Variants/` subfolder)
+   - Generated script variations combining BASE + data files
+   - Named patterns like: `PO Post test Variant-{Item}-{Location}.yml`
+   - Documentation of test results and analysis
+
+6. **Project To-Do File** (`TODO-[ProjectName].md`) *(optional)*
    - Working document for progress tracking
    - Milestones and testing checkpoints
    - Issues encountered and resolutions
-
-4. **Data Files** *(as needed)*
-   - Text files containing field values for script variations (e.g., `Items`, `Locations`)
-   - Data dictionaries or field mapping documentation
-   - Sample data for testing
-
-5. **Generated Output** *(in separate Run Me/ folder)*
-   - Final working scripts with variations
-   - Documentation of successful patterns
-   - Performance metrics and test results
-
-### Legacy Structure (Vibe Scripting folder)
-
-Contains proven examples and working patterns:
-
-1. **Reference Scripts** (`PO Scripts/`)
-   - Clean example scripts (.yml files)
-   - Proven patterns specific to purchase orders
-
-2. **Script Batches** (`Scripts Batch 1/`, `ScriptBatch2/`)
-   - Raw recordings for comparison
-   - Generated script variations
-   - Data files (e.g., `Itemcodes.txt`)
-
-3. **Demo Projects** (`SCS Demo 1/`)
-   - Complete project examples
-   - Template patterns for new projects
 
 ## AI Instructions for Future BC Page Script Generation
 
@@ -205,7 +240,7 @@ Contains proven examples and working patterns:
 The repository includes PowerShell scripts for automating variant generation:
 
 ### Generate-BC-Script-Variants.ps1
-Located in `Script Prompts/`, this script automates the creation of multiple test script variations from:
+Located at root level, this script automates the creation of multiple test script variations from:
 - A BASE recording YAML file
 - Data files containing field values (Items, Locations, Vendors, etc.)
 
@@ -219,8 +254,9 @@ Located in `Script Prompts/`, this script automates the creation of multiple tes
 - Improved error handling
 - Detailed logging
 - Variant validation
+- Support for multiple data file types (var-items, var-locations, var-vendors)
 
-See `PS script copilot-instructions.md` in the project folder for AI-assisted PowerShell development guidance.
+See `PO Post Prep-3 PS Variants/PS script copilot-instructions.md` for AI-assisted PowerShell development guidance.
 
 ## 🐛 Troubleshooting Guide
 
@@ -246,34 +282,37 @@ See `PS script copilot-instructions.md` in the project folder for AI-assisted Po
 ### Starting a New BC Page Scripting Project
 
 1. **Create Project Subfolder**
-   - Name: `[Project Description]` (e.g., "PO Post SCS", "PO Post Prep-1")
-   - Location: Under `Script Prompts/` folder for active projects
+   - Name: `PO Post [Description]` (e.g., "PO Post SCS", "PO Post Prep-4")
+   - Location: At repository root level
 
 2. **Setup Project Files**
    - Create `PO Post Simple Process.md` with business process documentation
    - Create `PO Post Simple Prompt.md` for AI prompt template
-   - Create data files as needed (`Items`, `Locations`, etc.)
-   - Create `TODO-[ProjectName].md` for tracking progress (if needed)
+   - Create `BASE Recording.yml` or `PO Post test BASE.yml` - your tested base script
+   - Create data files as needed (`Items`, `Locations`, `var-items`, `var-locations`, `var-vendors`)
+   - Create `Variants/` subfolder for generated outputs
+   - Create `TODO-[ProjectName].md` for tracking progress (optional)
 
 3. **Initialize AI Chat Session**
    - Attach the project prompt file
-   - Include reference scripts from `Vibe Scripting/PO Scripts/` as context
+   - Include reference scripts from existing project folders as context
    - Provide business process documentation
    - Start with Step 1: Verify Prerequisites
 
 4. **Follow Proven Methodology**
-   - Build and test clean reference script first
+   - Build and test clean reference script first (BASE script)
    - Create single test variation with data files
    - Generate full series only after validation
-   - Output to `Script Prompts/Run Me/` folder
+   - Output to `Variants/` subfolder within your project
    - Document lessons learned in the TODO file
 
 ### Existing Project Examples
 
-- **Vibe Scripting/PO Scripts/**: Clean reference scripts and patterns
-- **Vibe Scripting/Scripts Batch 1/**: Legacy batch generation examples
-- **Vibe Scripting/SCS Demo 1/**: Complete demo project with prompt and TODO
-- **Script Prompts/PO Post SCS/**: Current active project with data files
+- **PO Post Prep-1/**: Complete example with BASE script, data files, and generated variants
+- **PO Post Prep-2/**: Alternative approach with simplified structure
+- **PO Post Prep-3/**: Raw recordings and multiple test script iterations
+- **PO Post Prep-3 PS Variants/**: Enhanced PowerShell automation with analysis tools
+- **PO Post SCS/**: SCS demonstration project
 
 ## 🎯 Complete Prompt Template for Future BC Page Script Generation
 
@@ -368,13 +407,14 @@ MAIN
 ## 🎓 Learning Path
 
 **For New Users:**
-1. Start with `Vibe Scripting/PO Scripts/` - Review clean examples
-2. Read `How to Create ADO Test Items Guide.md`
-3. Study `Vibe Scripting/SCS Demo 1/` - Complete project example
-4. Practice with a simple project in `Script Prompts/`
+1. Start with `PO Post Prep-1/` - Review complete project structure
+2. Study `PO Post Prep-3 PS Variants/` - Enhanced automation example
+3. Review `GETTING_STARTED.md` for detailed walkthrough
+4. Practice with a new project folder at root level
 
 **For Experienced Users:**
 - Use `Generate-BC-Script-Variants.ps1` for automation
+- Explore `Generate-BC-Script-Variants-Enhanced.ps1` for advanced features
 - Contribute proven patterns back to the repository
 - Help document new field patterns and gotchas
 
@@ -391,14 +431,15 @@ MAIN
 ### External Resources
 - [South Coast Summit 2025: AI-Driven Page Scripting Blog Post](https://blog.wingate365.com/2025/10/south-coast-summit-2025-ai-driven-page.html) - Detailed writeup on AI-driven BC page scripting methodology
 
+### Getting Started
+- [GETTING_STARTED.md](GETTING_STARTED.md) - **Start here!** Complete step-by-step guide for creating your first script variants
+
 ### Internal Documentation
 - [SECURITY.md](SECURITY.md) - **Important:** Security guidelines and setup instructions
-- `Vibe Scripting/How to Create ADO Test Items Guide.md` - Azure DevOps integration guidance
-- `Vibe Scripting/PO Scripts/` - ⭐ Clean reference scripts and established patterns
-- `Vibe Scripting/Scripts Batch 1/` - Legacy examples and batch generation patterns
-- `Script Prompts/PO Post Prep-3 PS Variants/PS script copilot-instructions.md` - PowerShell development guide
-- `Script Prompts/` - Active project preparation and current work
-- Individual project folders for specific business processes
+- `PO Post Prep-1/` - ⭐ Complete reference project with variants
+- `PO Post Prep-3/` - Raw recordings and test script examples
+- `PO Post Prep-3 PS Variants/PS script copilot-instructions.md` - PowerShell development guide
+- Individual project folders for specific business processes and approaches
 
 ## 📞 Support & Contribution
 
