@@ -213,8 +213,7 @@ Always request recordings for:
 ## Key notes
 
 - Do not use "Azure AD" instead use "Entra ID"
-- Stop saying 'production ready' in the README files! in fact never say that! 
-better to add a disclaimer in the main README about use at your own risk - this project is created for demo and research only purposes only. The Disclaimer can go at the end as a footnote.
+- Stop saying 'production ready' in the README files! in fact never say that! Better to add a disclaimer in the main README about use at your own risk - this project is created for demo and research only purposes only etc. The Disclaimer can go at the end as a footnote.
 - don't keep GIT committing and pushing unless instructed to do so 
-- If we are working in the MAIN branch - always as if that is correct - its better to work in a separate branch and PR later 
-- dont add "**Maintainer:** " in readme files - unless i ask you to 
+- If we are working in the MAIN branch - always ask if that is correct - is it better to work in a separate branch and PR later? 
+- Don't add "**Maintainer:** " in the readme files - unless i ask you to
