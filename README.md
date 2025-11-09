@@ -4,14 +4,13 @@ Automate Business Central page testing using YAML-based scripts executed via Pla
 
 ## ✨ Key Features
 
-- 🎯 **YAML-based BC page automation** - Record once, replay many times
 - 🔄 **Variant generation** - Automatically create test combinations from data files
-- 🔐 **MFA TOTP Support** - Test with accounts that require multi-factor authentication
-- 🤖 **AI-assisted development** - Proven methodology for script generation
+- 🔐 **MFA TOTP Support for bc-replay** - Use bc-replay on SaaS BC with accounts that require multi-factor authentication
+- 🤖 **AI-assisted development** - A methodology for AI script generation
 
 ## 🚀 Quick Start
 
-1. **Recording** - See [page-scripting/PAGE_SCRIPTING_QUICK_START.md](page-scripting/PAGE_SCRIPTING_QUICK_START.md) for recording scripts in BC
+1. **Generation** - See [page-scripting/PAGE_SCRIPTING_QUICK_START.md](page-scripting/PAGE_SCRIPTING_QUICK_START.md) for recording scripts in BC
 2. **Execution** - See [bc-replay/BC_REPLAY_QUICK_START.md](bc-replay/BC_REPLAY_QUICK_START.md) for running scripts in pipelines
 3. **MFA Support** - If using MFA accounts, see [bc-replay/bc-replay-mfa-solution/](bc-replay/bc-replay-mfa-solution/)
 4. **Examples** - Study `page-scripting/PO Post DirectionsEMEA/` for working patterns
@@ -24,18 +23,17 @@ Automate Business Central page testing using YAML-based scripts executed via Pla
 - Project folders with BASE recordings and data files
 - [PAGE_SCRIPTING_QUICK_START.md](page-scripting/PAGE_SCRIPTING_QUICK_START.md) - Recording guide
 
-**`bc-replay/`** - Test execution and MFA support
+**`bc-replay/`** - Test execution including using accounts with MFA enforced
 - Script runner for automated pipelines
-- **MFA TOTP solution** for accounts with MFA enabled
+- **MFA TOTP solution** for test runner accounts with MFA enabled
 - 📖 [BC_REPLAY_QUICK_START.md](bc-replay/BC_REPLAY_QUICK_START.md) - Execution guide
 - 📖 [bc-replay-mfa-solution/](bc-replay/bc-replay-mfa-solution/) - MFA setup
 
-## 🔐 MFA TOTP Support
+## 🔐 MFA TOTP Support for bc-replay
 
 ✅ **MFA solution available** for testing with BC accounts that require MFA:
 - Automatic TOTP code generation during login
 - Seamless integration with bc-replay
-- Safe fallback for non-MFA accounts
 
 � **See [bc-replay/bc-replay-mfa-solution/](bc-replay/bc-replay-mfa-solution/) for complete setup**
 

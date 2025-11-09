@@ -217,3 +217,4 @@ Always request recordings for:
 - don't keep GIT committing and pushing unless instructed to do so 
 - If we are working in the MAIN branch - always ask if that is correct - is it better to work in a separate branch and PR later? 
 - Don't add "**Maintainer:** " in the readme files - unless i ask you to
+- This emoji is terrible - please never use it: �
