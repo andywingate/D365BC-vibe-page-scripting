@@ -9,20 +9,77 @@ This solution enables bc-replay to work with Business Central accounts that have
 
 | File | Purpose |
 |------|---------|
-| **README.md** | This file - complete documentation hub |
-| **SETUP-INSTRUCTIONS.md** | Overview and quick reference |
-| **QUICK-SETUP.md** | Fast 5-minute setup guide with automated installer |
+| **README.md** | This file - complete documentation and setup guide |
 | **SOLUTION.md** | Technical approach, design decisions, and testing history |
 | **apply-mfa-patch.ps1** | **Automated patch installer** - recommended installation method |
 | **commands.js.patch** | The actual code modification (applied automatically by script) |
 | **test-mfa-template.ps1** | PowerShell test script template for your projects |
 | **REFERENCE-working-non-mfa-test.ps1** | Example of working non-MFA test for comparison |
 
-## 🚀 Quick Start
+## 🚀 Quick Start (5 Minutes)
 
-**New users:** Start with `QUICK-SETUP.md` for fastest setup.  
-**Curious about how it works:** Read `SOLUTION.md` for technical details.  
-**Need troubleshooting:** Continue reading below.
+Get MFA working in 6 easy steps:
+
+### 1. Install Dependencies
+```powershell
+cd bc-replay
+npm install @microsoft/bc-replay otplib --save
+```
+
+### 2. Apply MFA Patch (Automated)
+```powershell
+cd bc-replay-mfa-solution
+.\apply-mfa-patch.ps1
+```
+
+The script automatically:
+- ✅ Finds bc-replay installation
+- ✅ Creates backup
+- ✅ Applies MFA patch
+- ✅ Verifies success
+
+### 3. Get Your TOTP Seed
+
+⚠️ **CRITICAL:** Capture your TOTP seed during account MFA setup - you can NEVER retrieve it later!
+
+See the main [project README](../../README.md#-setting-up-totp-for-test-accounts) for complete TOTP account setup instructions with screenshots.
+
+### 4. Create Test Script
+
+Copy `test-mfa-template.ps1` and update:
+- Your email: `YOUR_EMAIL@YOUR_TENANT.onmicrosoft.com`
+- Your tenant: `YOUR_TENANT`
+- Your environment: `YOUR_ENVIRONMENT`
+- Your script: `YOUR_SCRIPT.yml`
+
+### 5. Run Test
+```powershell
+.\your-test-script.ps1
+```
+Enter password and TOTP seed when prompted.
+
+### 6. Verify Success
+Look for:
+```
+MFA TOTP prompt detected - generating code
+Generated TOTP code: 123456
+TOTP code entered
+Clicked Verify and navigated
+  1 passed (XX.Xs)
+```
+
+✅ Done! Your bc-replay now supports MFA!
+
+**Manual patching (if automated script fails):**
+1. Open: `node_modules/@microsoft/bc-replay/player/dist/commands.js`
+2. Find the `aadAuthenticate` function (around line 189)
+3. Add the MFA handling code from `commands.js.patch` after password submission
+4. Save the file
+
+---
+
+**Need technical details?** See `SOLUTION.md` for design decisions and testing history.  
+**Need troubleshooting?** Continue reading below.
 
 ## What's Working ✅
 - Automatic TOTP code generation during authentication
@@ -30,83 +87,6 @@ This solution enables bc-replay to work with Business Central accounts that have
 - Clean test execution with MFA-enabled accounts
 - No modification to bc-replay source needed (just node_modules patch)
 - Safe fallback for non-MFA accounts
-
-## Core Components
-
-### 1. apply-mfa-patch.ps1 (Automated Installer)
-**Recommended installation method** - Run this script to automatically apply the MFA patch.
-
-**What it does:**
-- Automatically locates bc-replay installation
-- Creates timestamped backup of commands.js
-- Applies the MFA patch from commands.js.patch
-- Verifies successful installation
-- Detects if patch is already applied
-
-**Usage:**
-```powershell
-.\apply-mfa-patch.ps1
-```
-
-### 2. commands.js.patch (Core Modification)
-The actual code modification to bc-replay's authentication flow. Adds TOTP handling after password entry.
-
-**What it does:**
-- Detects TOTP prompt after password submission
-- Reads `BC_MFA_SEED` environment variable
-- Generates 6-digit TOTP code using otplib
-- Automatically fills and submits the code
-- Continues with normal authentication flow
-
-**Location:** Applied to `node_modules/@microsoft/bc-replay/player/dist/commands.js`
-
-### 3. test-mfa-template.ps1 (Test Script Template)
-PowerShell template for creating your own MFA-enabled test scripts.
-
-**Usage:**
-1. Copy to your testing folder
-2. Replace placeholders:
-   - `YOUR_EMAIL@YOUR_TENANT.onmicrosoft.com`
-   - `YOUR_TENANT`
-   - `YOUR_ENVIRONMENT`
-   - `YOUR_SCRIPT.yml`
-3. Run the script - it prompts securely for password and TOTP seed
-
-## Installation Steps
-
-### Prerequisites
-```powershell
-npm install otplib --save
-```
-
-### Apply the Patch
-
-**Automated (Recommended):**
-```powershell
-cd bc-replay-mfa-solution
-.\apply-mfa-patch.ps1
-```
-
-The script will:
-- ✅ Locate bc-replay installation
-- ✅ Create automatic backup
-- ✅ Apply the MFA patch
-- ✅ Verify installation
-- ✅ Provide next steps
-
-**Manual (If automated fails):**
-1. Open: `node_modules/@microsoft/bc-replay/player/dist/commands.js`
-2. Find the `aadAuthenticate` function (around line 189)
-3. After the password submission block, add the MFA handling code from `commands.js.patch`
-4. Save the file
-
-### Test Your Setup
-1. Copy `test-mfa-template.ps1` to your testing folder
-2. Update the placeholders with your account details
-3. Run the script
-4. Enter your password when prompted
-5. Enter your TOTP seed when prompted
-6. Watch bc-replay automatically handle MFA!
 
 ## How It Works
 
