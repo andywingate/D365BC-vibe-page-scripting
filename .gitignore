@@ -1,8 +1,9 @@
 # VS Code workspace files
 BC.code-workspace
 
-# VS Code settings
-.vscode/
+# VS Code settings (allow settings.json for workspace configuration)
+.vscode/*
+!.vscode/settings.json
 
 # AL Language Extension artifacts (not an AL project - ignore these)
 .alpackages/
