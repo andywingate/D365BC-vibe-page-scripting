@@ -1,0 +1,28 @@
+{
+  "name": "bc-replay-mfa",
+  "version": "1.0.0",
+  "description": "BC-Replay with MFA (TOTP) authentication support for automated testing",
+  "main": "mfa-auth.js",
+  "scripts": {
+    "test-auth": "node test-mfa-auth.js",
+    "install-deps": "npm install playwright otplib qrcode --save"
+  },
+  "keywords": [
+    "business-central",
+    "bc",
+    "dynamics365",
+    "mfa",
+    "totp",
+    "automation",
+    "testing",
+    "playwright"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@microsoft/bc-replay": "^0.1.76",
+    "otplib": "^12.0.1",
+    "playwright": "^1.40.0",
+    "qrcode": "^1.5.3"
+  }
+}

@@ -12,6 +12,19 @@ BC.code-workspace
 **/.env.local
 npx-run.local.ps1
 **/credentials.json
+setup-local-env.ps1
+**/setup-local-env.ps1
+
+# MFA TOTP seeds and authentication (CRITICAL - NEVER COMMIT!)
+**/mfa-seeds.txt
+**/totp-seed.txt
+**/*mfa*.png
+**/*totp*.png
+mfa-auth-success.png
+
+# Testing workspace (for active development with real credentials)
+bc-replay/testing/
+**/testing/
 
 # Test output and logs
 **/test-results/
