@@ -16,7 +16,10 @@ BC-replay is an npm package that executes Business Central page scripting YAML f
 
 **Required Scripts:**
 - YAML recording files from BC page scripting tool
-- Scripts must use authentication that doesn't require MFA (username/password only)
+
+**Authentication:**
+- Standard: Username/password accounts (no MFA)
+- **🔐 MFA TOTP: Fully supported!** See [bc-replay-mfa-solution/](bc-replay-mfa-solution/) for setup
 
 ## Quick Setup (5 Minutes)
 
@@ -90,7 +93,7 @@ npx replay .\recordings\*.yml `
   -ResultDir c:\bc-replay\results
 ```
 
-⚠️ **Important:** MFA (multi-factor authentication) is **not supported**. Use a test account with username/password authentication only.
+💡 **Note:** This is for standard (non-MFA) accounts. For MFA-enabled accounts, see the **[MFA TOTP Support section](#-mfa-totp-support-for-automated-testing)** below.
 
 ### Advanced Options
 
@@ -237,10 +240,11 @@ $env:BC_URL = "https://businesscentral.dynamics.com/tenant/sandbox"
 | Issue | Cause | Solution |
 |-------|-------|----------|
 | "Module not found" | bc-replay not installed | Run `npm i @microsoft/bc-replay --save` |
-| "Authentication failed" | Wrong credentials or MFA enabled | Verify credentials; disable MFA for test account |
+| "Authentication failed" | Wrong credentials or MFA blocking | Verify credentials; for MFA accounts use [bc-replay-mfa-solution](bc-replay-mfa-solution/) |
 | "Page not found" | Wrong BC URL | Verify `-StartAddress` URL is accessible |
 | Scripts pass locally but fail in pipeline | Different data in environments | Ensure test data exists in both environments |
 | "Chromium not found" | Playwright browsers not installed | Run `npx playwright install chromium` |
+| MFA prompt appears | Account has MFA enabled | Use [bc-replay-mfa-solution](bc-replay-mfa-solution/) for TOTP MFA support |
 
 ## Project Structure Example
 
@@ -279,10 +283,11 @@ Record BASE script → Generate variants → Execute with bc-replay → Review r
 - Run scripts in consistent order for reproducible results
 - Use glob patterns (`*.yml`) to run suites
 - Add bc-replay folder to CI/CD pipeline
+- **Use [bc-replay-mfa-solution](bc-replay-mfa-solution/) for MFA-enabled accounts**
 
 ❌ **DON'T:**
 - Commit credentials to version control
-- Use MFA-enabled accounts for automated testing
+- Use MFA-enabled accounts without the MFA solution (they'll fail)
 - Run headed mode in CI/CD pipelines (causes hanging)
 - Assume data exists without validation
 - Mix Windows auth and UserPassword auth in same pipeline
