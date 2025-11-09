@@ -22,6 +22,10 @@ setup-local-env.ps1
 **/*totp*.png
 mfa-auth-success.png
 
+# Testing workspace (for active development with real credentials)
+bc-replay/testing/
+**/testing/
+
 # Test output and logs
 **/test-results/
 **/playwright-report/
