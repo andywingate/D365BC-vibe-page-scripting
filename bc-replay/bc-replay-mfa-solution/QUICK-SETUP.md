@@ -1,5 +1,7 @@
 # Quick Setup Guide - BC Replay TOTP MFA
 
+Fast track to getting MFA working with bc-replay in 6 steps. For troubleshooting or technical details, see `README.md`.
+
 ## 1. Install Dependencies
 ```powershell
 cd bc-replay

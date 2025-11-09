@@ -1,4 +1,4 @@
-# BC Replay TOTP MFA Solution
+# BC Replay TOTP MFA Solution - Quick Reference
 
 ✅ **Status:** Production Ready (November 9, 2025)
 
@@ -6,12 +6,11 @@
 
 A working solution to enable bc-replay to work with Business Central accounts that have TOTP (Time-based One-Time Password) MFA enabled.
 
-## Quick Start
+## Installation (3 Steps)
 
 1. **Install dependencies:** `npm install @microsoft/bc-replay otplib --save`
 2. **Apply patch:** Run `.\apply-mfa-patch.ps1` (automated!)
-3. **Create test script:** Copy `test-mfa-template.ps1`
-4. **Run test:** Script will prompt for password and TOTP seed
+3. **Create test script:** Copy `test-mfa-template.ps1` and customize
 
 ⚡ **Total time: < 5 minutes with automated patch script!**
 
@@ -19,7 +18,7 @@ A working solution to enable bc-replay to work with Business Central accounts th
 
 | File | Purpose |
 |------|---------|
-| **SETUP.md** | This file - overview and quick start |
+| **SETUP-INSTRUCTIONS.md** | This file - overview and quick start |
 | **QUICK-SETUP.md** | Fast setup guide with automated patch script |
 | **README.md** | Complete documentation and troubleshooting |
 | **SOLUTION.md** | Technical approach and design decisions |
@@ -61,11 +60,9 @@ Clicked Verify and navigated
 
 ## Support
 
-See `README.md` for:
-- Detailed installation steps
-- Troubleshooting guide
-- Environment variable reference
-- Maintenance notes
+**Detailed setup:** See `QUICK-SETUP.md` for step-by-step installation  
+**Troubleshooting:** See `README.md` for environment variables, errors, and solutions  
+**How it works:** See `SOLUTION.md` for technical approach and testing history
 
 ## Important Note
 
@@ -73,7 +70,3 @@ See `README.md` for:
 Changes will be lost when running `npm install` - simply rerun `.\apply-mfa-patch.ps1` to reapply!
 
 ✅ The patch script creates automatic backups and is safe to run multiple times.
-
----
-
-**Start here:** `QUICK-SETUP.md`
