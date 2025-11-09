@@ -8,19 +8,23 @@ A working solution to enable bc-replay to work with Business Central accounts th
 
 ## Quick Start
 
-1. **Install dependency:** `npm install otplib --save`
-2. **Apply patch:** Follow `QUICK-SETUP.md`
+1. **Install dependencies:** `npm install @microsoft/bc-replay otplib --save`
+2. **Apply patch:** Run `.\apply-mfa-patch.ps1` (automated!)
 3. **Create test script:** Copy `test-mfa-template.ps1`
 4. **Run test:** Script will prompt for password and TOTP seed
+
+⚡ **Total time: < 5 minutes with automated patch script!**
 
 ## Files in This Folder
 
 | File | Purpose |
 |------|---------|
+| **INDEX.md** | This file - overview and quick start |
+| **QUICK-SETUP.md** | Fast setup guide with automated patch script |
 | **README.md** | Complete documentation and troubleshooting |
-| **QUICK-SETUP.md** | Fast setup guide (< 5 minutes) |
 | **SOLUTION.md** | Technical approach and design decisions |
-| **commands.js.patch** | The actual code modification to apply |
+| **apply-mfa-patch.ps1** | **Automated patch installer** - run this! |
+| **commands.js.patch** | The actual code modification (applied by script) |
 | **test-mfa-template.ps1** | PowerShell test script template |
 | **REFERENCE-working-non-mfa-test.ps1** | Example of working non-MFA test |
 
@@ -66,7 +70,9 @@ See `README.md` for:
 ## Important Note
 
 ⚠️ This patch modifies `node_modules/@microsoft/bc-replay/player/dist/commands.js`  
-Changes will be lost when running `npm install` - keep `commands.js.patch` and reapply as needed.
+Changes will be lost when running `npm install` - simply rerun `.\apply-mfa-patch.ps1` to reapply!
+
+✅ The patch script creates automatic backups and is safe to run multiple times.
 
 ---
 

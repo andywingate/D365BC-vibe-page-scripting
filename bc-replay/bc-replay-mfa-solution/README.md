@@ -41,6 +41,21 @@ npm install otplib --save
 ```
 
 ### Apply the Patch
+
+**Automated (Recommended):**
+```powershell
+cd bc-replay-mfa-solution
+.\apply-mfa-patch.ps1
+```
+
+The script will:
+- ✅ Locate bc-replay installation
+- ✅ Create automatic backup
+- ✅ Apply the MFA patch
+- ✅ Verify installation
+- ✅ Provide next steps
+
+**Manual (If automated fails):**
 1. Open: `node_modules/@microsoft/bc-replay/player/dist/commands.js`
 2. Find the `aadAuthenticate` function (around line 189)
 3. After the password submission block, add the MFA handling code from `commands.js.patch`

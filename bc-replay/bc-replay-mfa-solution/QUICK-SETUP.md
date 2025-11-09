@@ -2,53 +2,40 @@
 
 ## 1. Install Dependencies
 ```powershell
-npm install otplib --save
+cd bc-replay
+npm install @microsoft/bc-replay otplib --save
 ```
 
-## 2. Apply Patch
-Open: `node_modules/@microsoft/bc-replay/player/dist/commands.js`
+## 2. Apply MFA Patch
 
-Find line ~194 in the `aadAuthenticate` function, right after:
-```javascript
-await Promise.all([page.waitForNavigation({ timeout: navigationTimeout }), page.click("input[type=submit]", { timeout: navigationTimeout })]);
+**Automated (Recommended):**
+```powershell
+cd bc-replay-mfa-solution
+.\apply-mfa-patch.ps1
 ```
 
-Add this code block:
-```javascript
-// Check for MFA prompt (TOTP)
-const mfaSeed = process.env["BC_MFA_SEED"];
-if (mfaSeed) {
-    try {
-        // Wait briefly for MFA prompt to appear
-        const totpInput = await page.waitForSelector('input[name="otc"]', { timeout: 3000 }).catch(() => null);
-        if (totpInput) {
-            console.log("MFA TOTP prompt detected - generating code");
-            const authenticator = require('otplib').authenticator;
-            authenticator.options = { step: 30, window: 1 };
-            const totpCode = authenticator.generate(mfaSeed);
-            console.log(`Generated TOTP code: ${totpCode}`);
-            
-            await page.fill('input[name="otc"]', totpCode);
-            console.log("TOTP code entered");
-            
-            await Promise.all([page.waitForNavigation({ timeout: navigationTimeout }), page.click('input[type="submit"][value="Verify"]', { timeout: navigationTimeout })]);
-            console.log("Clicked Verify and navigated");
-        }
-    } catch (error) {
-        console.warn("MFA handling error:", error.message);
-    }
-}
-```
+Done! The script automatically:
+- ✅ Finds bc-replay installation
+- ✅ Creates backup
+- ✅ Applies MFA patch
+- ✅ Verifies success
 
-## 3. Create Test Script
+**Manual (If needed):**
+See `commands.js.patch` for the code to add to `node_modules/@microsoft/bc-replay/player/dist/commands.js`
+
+## 3. Get Your TOTP Seed
+
+⚠️ **CRITICAL:** Capture your TOTP seed during account MFA setup - you can NEVER retrieve it later!
+
+See the main [README.md](../../README.md#-setting-up-totp-for-test-accounts) for complete instructions with screenshots.
+
+## 4. Create Test Script
+
 Copy `test-mfa-template.ps1` and update:
 - Your email: `YOUR_EMAIL@YOUR_TENANT.onmicrosoft.com`
 - Your tenant: `YOUR_TENANT`
 - Your environment: `YOUR_ENVIRONMENT`
 - Your script: `YOUR_SCRIPT.yml`
-
-## 4. Get Your TOTP Seed
-See `../../docs/SEED-CAPTURE-QUICK.md` for instructions on extracting your TOTP seed from authenticator setup.
 
 ## 5. Run Test
 ```powershell
@@ -66,4 +53,12 @@ Clicked Verify and navigated
   1 passed (XX.Xs)
 ```
 
-✅ Done!
+✅ Done! Your bc-replay now supports MFA!
+
+---
+
+## 💡 Important Notes
+
+- **Reapply after npm install:** Run `.\apply-mfa-patch.ps1` again if you reinstall packages
+- **Seed security:** Store TOTP seeds securely, never commit to git
+- **Backup available:** The patch script creates timestamped backups automatically
