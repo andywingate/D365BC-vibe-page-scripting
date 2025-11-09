@@ -4,6 +4,12 @@ BC.code-workspace
 # VS Code settings
 .vscode/
 
+# AL Language Extension artifacts (not an AL project - ignore these)
+.alpackages/
+.snapshots/
+**/.alpackages/
+**/.snapshots/
+
 # ===== BC PAGE SCRIPTING SPECIFIC =====
 # Credentials and sensitive information
 **/config.local.*
