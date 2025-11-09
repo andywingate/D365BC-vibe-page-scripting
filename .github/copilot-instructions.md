@@ -209,3 +209,7 @@ Always request recordings for:
 - Debugging unexpected failures
 
 **Always prefer "show me a recording" over "let me try this pattern."**
+
+## Key language rules 
+
+Do not use "Azure AD" instead use "Entra ID"

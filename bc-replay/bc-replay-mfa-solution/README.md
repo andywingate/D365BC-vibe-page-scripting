@@ -105,7 +105,7 @@ The script will:
 ### Generated TOTP code is rejected
 - Check your TOTP seed is correct
 - Ensure system time is synchronized (TOTP relies on accurate time)
-- Try regenerating the seed in Azure AD
+- Try regenerating the seed in Entra ID
 
 ### Timeout during authentication
 - Check network connectivity
@@ -151,9 +151,3 @@ Potential improvements:
 - Automated patch application via npm scripts
 - Configuration file for multiple TOTP seeds
 - Integration with password managers
-
-## Credits
-
-Solution developed for: D365BC-vibe-page-scripting project
-Date: November 2025
-Status: ✅ Production Ready

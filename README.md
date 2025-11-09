@@ -55,7 +55,7 @@ This project includes a **production-ready solution** for testing with BC accoun
 **📁 Location:** `bc-replay/bc-replay-mfa-solution/`
 
 **📖 Documentation:**
-- `INDEX.md` - Quick overview and getting started
+- `SETUP.md` - Quick overview and getting started
 - `QUICK-SETUP.md` - 5-minute setup guide
 - `README.md` - Complete documentation and troubleshooting
 - `SOLUTION.md` - Technical approach and design decisions

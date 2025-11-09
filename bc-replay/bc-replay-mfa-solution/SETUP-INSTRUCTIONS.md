@@ -19,7 +19,7 @@ A working solution to enable bc-replay to work with Business Central accounts th
 
 | File | Purpose |
 |------|---------|
-| **INDEX.md** | This file - overview and quick start |
+| **SETUP.md** | This file - overview and quick start |
 | **QUICK-SETUP.md** | Fast setup guide with automated patch script |
 | **README.md** | Complete documentation and troubleshooting |
 | **SOLUTION.md** | Technical approach and design decisions |
