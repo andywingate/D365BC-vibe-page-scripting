@@ -53,6 +53,7 @@ The script now uses relative paths (`.\Script Prompts\Run Me`). If your folder s
    - Never use production credentials
    - Create dedicated test accounts with minimal permissions
    - Use accounts without MFA for automation (in isolated test environments only)
+   - **OR** use TOTP-based MFA with the included solution (see below)
 
 2. **Isolate Test Environments**
    - Run scripts only in sandbox/test environments
@@ -148,6 +149,25 @@ When in doubt, use placeholders and document what users need to configure.
 4. Never commit the `.local.ps1` file (it's in `.gitignore`)
 
 This way you maintain a clean version-controlled template while keeping your actual credentials safe and local.
+
+## 🔐 Setting Up TOTP for Test Accounts
+
+If your organization requires MFA for test accounts, you can use the included TOTP solution instead of requesting MFA exceptions.
+
+**Quick Setup:**
+1. Create a test account in Azure AD/Microsoft 365
+2. Enable TOTP authentication (Authenticator app method)
+3. ⚠️ **CRITICAL:** Capture the TOTP seed during setup - it's **ONLY shown ONCE!** (see detailed instructions in [README.md](README.md#-setting-up-totp-for-test-accounts))
+4. Store the seed securely for use with bc-replay MFA solution
+
+⚠️ **WARNING:** The TOTP seed is only visible during the initial QR code setup screen. Once you complete setup, you can never see it again. If you miss it, you must delete and recreate the authentication method.
+
+**Benefits:**
+- Comply with organizational MFA policies
+- No need for security exceptions
+- Test with production-like authentication flows
+
+**Full Documentation:** See [bc-replay/bc-replay-mfa-solution/](bc-replay/bc-replay-mfa-solution/) and [README.md - TOTP Account Setup](README.md#-setting-up-totp-for-test-accounts).
 
 ---
 

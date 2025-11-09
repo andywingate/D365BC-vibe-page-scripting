@@ -5,10 +5,14 @@ Get up and running with BC page automation in 15 minutes.
 ## 📋 What You Need
 
 - Business Central test environment (Sandbox)
-- Test account with permissions (MFA disabled)
+- Test account with permissions (MFA disabled **OR** TOTP-based MFA - see [MFA support](bc-replay/bc-replay-mfa-solution/))
 - PowerShell, Git, and BC Page Scripting tool (Playwright-based bc-replay)
 
 ⚠️ **Important:** Configure credentials first - see [SECURITY.md](SECURITY.md)
+
+💡 **Note:** This project supports both standard authentication and MFA accounts using TOTP (Authenticator app). For TOTP setup instructions, see [README.md - TOTP Account Setup](README.md#-setting-up-totp-for-test-accounts).
+
+⚠️ **TOTP Critical Warning:** If setting up TOTP, you **MUST** capture the seed during initial setup - it's **ONLY shown ONCE** and can never be retrieved later!
 
 ## 🚀 Setup (5 Minutes)
 

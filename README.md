@@ -2,11 +2,21 @@
 
 Automate Business Central page testing using YAML-based scripts executed via Playwright. Record once, generate variants, test multiple combinations.
 
-## 🚀 Quick Start
+## ✨ Key Features
+
+- 🎯 **YAML-based BC page automation** - Record once, replay many times
+- 🔄 **Variant generation** - Automatically create test combinations from data files
+- 🔐 **MFA TOTP Support** - Test with accounts that require multi-factor authentication
+- 🤖 **AI-assisted development** - Proven methodology for script generation
+- � **Multi-dimensional testing** - 2D and 3D variant approaches
+
+## �🚀 Quick Start
 
 1. **Review Structure** - `page-scripting/` for scripts, `bc-replay/` for execution
 2. **Study Examples** - See `page-scripting/PO Post DirectionsEMEA/` for working patterns
-3. **Read the Guide** - Full walkthrough in [GETTING_STARTED.md](GETTING_STARTED.md)
+3. **Setup bc-replay** - See [bc-replay/BC_REPLAY_QUICK_START.md](bc-replay/BC_REPLAY_QUICK_START.md) for execution setup
+4. **MFA Support** - If using MFA accounts, see [bc-replay/bc-replay-mfa-solution/](bc-replay/bc-replay-mfa-solution/)
+5. **Read the Guide** - Full walkthrough in [GETTING_STARTED.md](GETTING_STARTED.md)
 
 **Core Principle:** Always request reference recordings before implementing new BC actions. Never guess!
 
@@ -26,9 +36,117 @@ Automate Business Central page testing using YAML-based scripts executed via Pla
 - Project folders (e.g., `PO Post DirectionsEMEA/`, `PO Post DirectionsEMEA - Volume/`)
 - Each folder contains: BASE recording, data files, process docs, and Variants output
 
-**`bc-replay/`** - Test execution
+**`bc-replay/`** - Test execution and MFA support
 - Script runner (`npx-run.ps1`)
+- **MFA TOTP solution** (`bc-replay-mfa-solution/`) - **Supports Business Central accounts with MFA enabled**
 - Test configuration and utilities
+- Comprehensive documentation for both standard and MFA authentication
+
+### 🔐 MFA TOTP Authentication Support
+
+This project includes a **production-ready solution** for testing with BC accounts that have MFA enabled:
+
+**✅ What's Supported:**
+- Time-based One-Time Password (TOTP) authentication
+- Automatic TOTP code generation and injection during login
+- Seamless integration with existing bc-replay workflows
+- Safe fallback for non-MFA accounts
+
+**📁 Location:** `bc-replay/bc-replay-mfa-solution/`
+
+**📖 Documentation:**
+- `INDEX.md` - Quick overview and getting started
+- `QUICK-SETUP.md` - 5-minute setup guide
+- `README.md` - Complete documentation and troubleshooting
+- `SOLUTION.md` - Technical approach and design decisions
+
+**🎯 Use Cases:**
+- Testing with production-like accounts that require MFA
+- Organizations with strict MFA policies
+- Avoiding security policy exceptions for test accounts
+
+**See [bc-replay/bc-replay-mfa-solution/](bc-replay/bc-replay-mfa-solution/) for complete setup instructions.**
+
+## 🔐 Setting Up TOTP for Test Accounts
+
+If your organization requires MFA for all accounts, you can set up a test account with TOTP (Authenticator app) authentication and use it with the MFA solution above.
+
+### Prerequisites
+- Azure AD/Microsoft 365 administrator access
+- Ability to create test users
+- Access to Security Info setup during account creation
+
+### Step-by-Step TOTP Account Setup
+
+1. **Create a Test User in Azure AD**
+   - Navigate to Azure AD > Users > New user
+   - Create user with username (e.g., `bctest@yourtenant.onmicrosoft.com`)
+   - Set temporary password
+   - Grant appropriate BC permissions
+
+2. **Enable TOTP Authentication Method**
+   - Navigate to the user's account
+   - Go to Authentication methods or Security info
+   - Select "Add sign-in method"
+   - Choose "Authenticator app"
+
+3. **Capture the TOTP Seed** (⚠️ CRITICAL - ONE-TIME ONLY!)
+   
+   ⚠️ **CRITICAL WARNING:** The TOTP seed is **ONLY** shown during initial account setup. Once you complete the setup, you can **NEVER** see it again. You **MUST** capture it during this step or you'll have to reset the authentication method and start over!
+   
+   During the QR code setup screen:
+   
+   - When presented with the QR code, look for "Can't scan image?" or "Configure without notifications" link
+   - Click to reveal the **Secret Key** (alphanumeric string - usually 32 characters)
+   - **IMMEDIATELY copy and save this seed securely** - you'll need it for the bc-replay MFA solution
+   - **DO NOT proceed until you have safely stored this seed**
+   
+   **Screenshot Reference:** The TOTP seed appears in the Microsoft account security setup:
+   
+![TOTP enabled account Security Settings](image.png)
+   
+   ⚠️ **Important:** After you complete setup, the seed disappears forever. Microsoft does not store it or show it again. If you lose it, you must delete and recreate the authentication method.
+
+4. **Complete Authentication Setup**
+   - Enter the seed in your authenticator app (or save for bc-replay use)
+   - Verify the setup works by completing the authentication flow
+   - Test login with username, password, and TOTP code
+
+5. **Store Credentials Securely**
+   - Username: `bctest@yourtenant.onmicrosoft.com`
+   - Password: (stored securely, not in code)
+   - TOTP Seed: (stored securely for bc-replay MFA solution)
+
+### Using the TOTP Account with bc-replay
+
+Once your TOTP account is set up:
+
+1. Store the TOTP seed in your secure credential storage
+2. Follow the [bc-replay MFA solution setup](bc-replay/bc-replay-mfa-solution/QUICK-SETUP.md)
+3. Update your test scripts to use the TOTP seed
+4. Run tests normally - TOTP codes are generated automatically
+
+### Benefits of TOTP Test Accounts
+
+- ✅ Complies with organizational MFA policies
+- ✅ No need for security exceptions
+- ✅ Tests realistic authentication flows
+- ✅ Can be used across multiple test environments
+- ✅ Automated TOTP code generation via bc-replay solution
+
+### Troubleshooting TOTP Setup
+
+| Issue | Solution |
+|-------|----------|
+| Can't find "Secret Key" option | Try "Configure without notifications" or "Set up a different way" links |
+| TOTP codes don't work | Verify system time is synchronized (TOTP is time-sensitive) |
+| Forgot to capture seed during setup | Delete the authentication method and set it up again - the seed is only shown ONCE during initial setup |
+| Lost the TOTP seed | You must reset the authentication method completely and capture the NEW seed during setup |
+| Account locked after testing | Use separate test account per environment to avoid lockouts |
+
+**See also:**
+- [bc-replay/bc-replay-mfa-solution/README.md](bc-replay/bc-replay-mfa-solution/README.md) - Complete MFA solution documentation
+- [SECURITY.md](SECURITY.md#-setting-up-totp-for-test-accounts) - Security guidelines for test accounts
 
 ### Variant Generation Approaches
 
