@@ -1,7 +1,5 @@
 # BC Replay TOTP MFA Solution - README
 
-✅ **Status:** Production Ready (November 9, 2025)
-
 ## Overview
 This solution enables bc-replay to work with Business Central accounts that have TOTP (Time-based One-Time Password) MFA enabled. Automatic TOTP code generation integrates seamlessly with bc-replay's AAD authentication flow.
 

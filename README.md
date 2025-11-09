@@ -32,7 +32,7 @@ Automate Business Central page testing using YAML-based scripts executed via Pla
 
 ## 🔐 MFA TOTP Support
 
-✅ **Production-ready solution** for testing with BC accounts that require MFA:
+✅ **MFA solution available** for testing with BC accounts that require MFA:
 - Automatic TOTP code generation during login
 - Seamless integration with bc-replay
 - Safe fallback for non-MFA accounts
@@ -64,3 +64,7 @@ Automate Business Central page testing using YAML-based scripts executed via Pla
 - [BC-Replay Package](https://www.npmjs.com/package/@microsoft/bc-replay) - npm package for pipeline execution  
 - [Playwright](https://playwright.dev/) - Underlying test automation framework
 - [Blog: AI-Driven Page Scripting](https://blog.wingate365.com/2025/10/south-coast-summit-2025-ai-driven-page.html) - Methodology deep dive
+
+---
+
+> ⚠️ **Disclaimer:** This project is created for demonstration and research purposes only. Use at your own risk.
