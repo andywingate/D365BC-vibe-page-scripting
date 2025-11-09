@@ -1,0 +1,45 @@
+// Patch for: node_modules/@microsoft/bc-replay/player/dist/commands.js
+// Location: Inside the aadAuthenticate function, after password submission
+
+// FIND THIS SECTION (around line 194):
+async function aadAuthenticate(page, url, email, password) {
+    await page.fill("input[type=email]", email);
+    await Promise.all([page.waitForNavigation({ timeout: navigationTimeout }), page.click("input[type=submit]", { timeout: navigationTimeout })]);
+    await page.waitForFunction(() => document.querySelector("input[type=password]") && document.querySelector("input[type=password]")?.tabIndex !== -1);
+    await page.fill("input[type=password]", password);
+    await Promise.all([page.waitForNavigation({ timeout: navigationTimeout }), page.click("input[type=submit]", { timeout: navigationTimeout })]);
+    if (!page.url().startsWith(url)) {
+
+// REPLACE WITH:
+async function aadAuthenticate(page, url, email, password) {
+    await page.fill("input[type=email]", email);
+    await Promise.all([page.waitForNavigation({ timeout: navigationTimeout }), page.click("input[type=submit]", { timeout: navigationTimeout })]);
+    await page.waitForFunction(() => document.querySelector("input[type=password]") && document.querySelector("input[type=password]")?.tabIndex !== -1);
+    await page.fill("input[type=password]", password);
+    await Promise.all([page.waitForNavigation({ timeout: navigationTimeout }), page.click("input[type=submit]", { timeout: navigationTimeout })]);
+    
+    // Check for MFA prompt (TOTP)
+    const mfaSeed = process.env["BC_MFA_SEED"];
+    if (mfaSeed) {
+        try {
+            // Wait briefly for MFA prompt to appear
+            const totpInput = await page.waitForSelector('input[name="otc"]', { timeout: 3000 }).catch(() => null);
+            if (totpInput) {
+                console.log("MFA TOTP prompt detected - generating code");
+                const authenticator = require('otplib').authenticator;
+                authenticator.options = { step: 30, window: 1 };
+                const totpCode = authenticator.generate(mfaSeed);
+                console.log(`Generated TOTP code: ${totpCode}`);
+                
+                await page.fill('input[name="otc"]', totpCode);
+                console.log("TOTP code entered");
+                
+                await Promise.all([page.waitForNavigation({ timeout: navigationTimeout }), page.click('input[type="submit"][value="Verify"]', { timeout: navigationTimeout })]);
+                console.log("Clicked Verify and navigated");
+            }
+        } catch (error) {
+            console.warn("MFA handling error:", error.message);
+        }
+    }
+    
+    if (!page.url().startsWith(url)) {

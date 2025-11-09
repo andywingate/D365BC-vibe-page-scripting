@@ -1,0 +1,23 @@
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="21.364915">
+<testsuite name="dist\player.spec.js" timestamp="2025-11-09T18:50:41.855Z" hostname="chromium" tests="1" failures="0" skipped="0" time="15.177" errors="0">
+<testcase name=" (C:\Git\D365BC-vibe-page-scripting\bc-replay\bc-page-script-simple-example.yml)" classname="dist\player.spec.js" time="15.177">
+<properties>
+<property name="log" value="https://businesscentral.dynamics.com/venturedemos.onmicrosoft.com/do#open-replaylog=H4sIAAAAAAAAA91Z227bOBB991cQfZdK6i7BCJBm0yJA62Tj7AIN_EKJlKONLHpJKq7_finJdm1Lvkh23W5fAoEmh3POnJkhGUlTOqGSz-9IAFDsODENbQ2FnqNZyDI1z_ChBkMCQ5sY2EdxT0g6FUEPAA3I-ZQGIMne2CtVAwBIzMdUBuV3MWGKx2rCh1wkGRUCfMGZGuDgkaUU3NBMUr6YCgDPM5lM6CONAxD-w1cmcCQTlgWg_6CWgoecRy9YUHDPCeVX5SxCRcSTaTXtrnQG9CNcDlxtLui_X46XK1M2XvoqlOsyAAY0FHqkQf8JeYENAxvpEKLnxSySc1zt45vOGgUFTk28sFlWThRM7UqXpisSNh0pf5owgtMAxDgVFX0LDopQhKZn19GVHKywDehMebALIZhhAUqf9KPBGjqy4PMasJhFudgT2gZUtWAukRSr4oSmpFDEXIs5m4C_aUYYBwOm18F-LPb-jvb71A5RNHQD2fUomoa7IeRpLi8H9g2nubL6DkEI35UjifiYpCoprsVXlj-VPkme0yaVK09Bv7RwVazvv6--FQbJzsaZ7fp1zpDfUvkpY6_5NNhFw_4s-Hd2KAuGqoJF8lTde8h9_pWk8DPC7VlmPdyGhbbDHaVMUNI13ucIb-XB8fE1deShC8T3M4tK2sANI3Q9sl-u7wYnpHixfEfMN7bsEHZTVUZYD7trGJ2yvM7A_vwW2SXy29R9x1yPfykgrfB8jwh2QqpLoQnGTbFHaWo3mDYI_IYwOd6vIOqfIlxLh15DvXLdbd0eV67qKM-h07aFylKFyvmRhWpablyu-lwcyveaA8M8jBmfrCZxOqVYVS8lbpZJzlK0LZbtjnbKwWaHcLq1N0vVuQa5IHs9g8593L0U2_vOzV3pMv2mw986W8d3hePOetK6RC-wdMsyf6MUQz6E2vCU-0Np4MzJZjkN6nHtji14CbnOe5Nmztp4Ld1uguKZv6WCLqwSx7MaLuUQdmvhjTeMjkWlbeO2dWjA_3NV-TPHamc53-je6OBldIcgltY6qEIxaTkNqkD2BrsH3hzb0rt8ZnxgQjZh3npVVLN0vYvmbd30vIa-6prbmt_fWLM8TRcDOJdsUtopFO8R7CAaEw1CaBR_TA3a0NVgCAlCyEQuIouFC-eVJl4YExu3tVXb2Mylb4dyqbJ0WoO2ddvbeow5EOw1Mk6go5mQumoWLFReVV32_nWnZu5fgbpU7CSoBSsOMhqeZ5Dnt6yWK7bOEdu2ddLVPcN7bulxQzK3fCrf-0jeAYOt-laGJ8U_N66Ht-CRRoyTJBv3Nnx4okKq0rv8rTKorE85i5O0WPzX8G5wOxyqq_Tg-tPtY2-x_a6tLUP3nVIFa6XD8o0C_1tCKFPSDUafEjn6w3TsDzfaWxJWZyxt4VY2HoWRptpBiucjqfxT3yJPpRjpxdCMJ-MXqandk1iVRKHBkUdRjCFyIwIpdC3Td6lJiIEjm1qUUKzPaDjp_QdtDQzvSBoAAA&amp;zip=1">
+</property>
+</properties>
+<system-out>
+<![CDATA[MFA TOTP prompt detected - generating code
+Generated TOTP code: 197911
+TOTP code entered
+Clicked Verify and navigated
+
+[[ATTACHMENT|test-results\dist-player--C-Git-D365BC--8bde5--script-simple-example-yml--chromium\attachments\Recording-c26352b0ff3caabdff63e0707eed1925a0ce713b.yml]]
+
+[[ATTACHMENT|test-results\dist-player--C-Git-D365BC--8bde5--script-simple-example-yml--chromium\attachments\Replay-log-3258f17475e562e80adfdceea91121748b99110e.yml]]
+
+[[ATTACHMENT|test-results\dist-player--C-Git-D365BC--8bde5--script-simple-example-yml--chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>
