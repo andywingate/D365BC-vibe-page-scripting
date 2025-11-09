@@ -35,7 +35,7 @@ Automate Business Central page testing using YAML-based scripts executed via Pla
 - Automatic TOTP code generation during login
 - Seamless integration with bc-replay
 
-� **See [bc-replay/bc-replay-mfa-solution/](bc-replay/bc-replay-mfa-solution/) for complete setup**
+**See [bc-replay/bc-replay-mfa-solution/](bc-replay/bc-replay-mfa-solution/) for complete setup**
 
 ## 🔒 Security
 
@@ -46,7 +46,7 @@ Automate Business Central page testing using YAML-based scripts executed via Pla
 
 📖 **See [SECURITY.md](SECURITY.md) for complete security guidelines and TOTP account setup**
 
-## � Documentation
+## Documentation
 
 | Guide | Purpose |
 |-------|---------|
