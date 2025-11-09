@@ -30,6 +30,9 @@ bc-replay/testing/
 **/test-results/
 **/playwright-report/
 **/allure-results/
+*.xml
+results.xml
+bc-replay/results.xml
 
 # Generated variant scripts (exclude from repo - too many files)
 **/Variants/PS Variants Scripts/*.yml
