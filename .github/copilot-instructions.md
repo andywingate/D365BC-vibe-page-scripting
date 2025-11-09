@@ -210,6 +210,10 @@ Always request recordings for:
 
 **Always prefer "show me a recording" over "let me try this pattern."**
 
-## Key language rules 
+## Key notes
 
-Do not use "Azure AD" instead use "Entra ID"
+- Do not use "Azure AD" instead use "Entra ID"
+- Stop saying 'production ready' in the README files! in fact never say that! 
+better to add a disclaimer in the main README about use at your own risk - this project is created for demo and research only purposes only.
+- don't keep GIT committing and pushing unless instructed to do so 
+- If we are working in the MAIN branch - always as if that is correct - its better to work in a separate branch and PR later 

@@ -350,9 +350,7 @@ For the full MFA setup and usage guide, see:
 **👉 [bc-replay-mfa-solution/](bc-replay-mfa-solution/) - Complete MFA Solution**
 
 This folder contains:
-- `INDEX.md` - Overview and getting started
-- `QUICK-SETUP.md` - 5-minute setup guide
-- `README.md` - Complete documentation
+- `README.md` - Complete documentation and setup guide
 - `SOLUTION.md` - Technical approach
 - Template scripts and examples
 
@@ -426,9 +424,8 @@ cd bc-replay
 
 ### 📚 Additional Resources
 
-- **[bc-replay-mfa-solution/INDEX.md](bc-replay-mfa-solution/INDEX.md)** - Start here for MFA setup
-- **[bc-replay-mfa-solution/QUICK-SETUP.md](bc-replay-mfa-solution/QUICK-SETUP.md)** - 5-minute setup guide
-- **[bc-replay-mfa-solution/README.md](bc-replay-mfa-solution/README.md)** - Complete documentation
+- **[bc-replay-mfa-solution/README.md](bc-replay-mfa-solution/README.md)** - Start here for MFA setup
+- **[bc-replay-mfa-solution/SOLUTION.md](bc-replay-mfa-solution/SOLUTION.md)** - Technical approach
 - **[../README.md#-setting-up-totp-for-test-accounts](../README.md#-setting-up-totp-for-test-accounts)** - TOTP account creation guide
 - **[../SECURITY.md#-setting-up-totp-for-test-accounts](../SECURITY.md#-setting-up-totp-for-test-accounts)** - Security guidelines
 

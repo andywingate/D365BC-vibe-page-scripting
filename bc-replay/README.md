@@ -33,9 +33,7 @@ npx playwright show-report
 
 **[bc-replay-mfa-solution/](bc-replay-mfa-solution/)** - Everything you need to run bc-replay with MFA-enabled accounts:
 
-- **INDEX.md** - Start here - overview and navigation
-- **QUICK-SETUP.md** - Get running in 5 minutes
-- **README.md** - Complete documentation and troubleshooting
+- **README.md** - Complete documentation and setup guide
 - **SOLUTION.md** - Technical details and approach
 
 ### What You'll Need
@@ -92,4 +90,4 @@ bc-replay/
 
 ---
 
-**Ready to automate BC testing with MFA?** Start here: **[bc-replay-mfa-solution/INDEX.md](bc-replay-mfa-solution/INDEX.md)** 🚀
+**Ready to automate BC testing with MFA?** Start here: **[bc-replay-mfa-solution/README.md](bc-replay-mfa-solution/README.md)** 🚀
