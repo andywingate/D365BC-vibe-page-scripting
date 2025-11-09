@@ -325,3 +325,125 @@ npx replay .\recordings\*.yml -StartAddress https://your-bc-url
 # 4. View results
 npx playwright show-report .\results\playwright-report
 ```
+## MFA Support for Service Accounts ✅
+
+**Challenge:** Many clients require MFA on all accounts, including service accounts used for automated testing. Standard bc-replay doesn't support MFA, blocking automation adoption.
+
+**Solution:** Programmatically generate TOTP codes during authentication using a known seed value. This allows secure automated testing while maintaining client MFA policies.
+
+### 🎉 Implementation Complete - Phase 1
+
+We've built a complete TOTP-based MFA authentication solution for bc-replay! This enables you to run automated BC page scripts with accounts that require multi-factor authentication.
+
+**What's Working:**
+- ✅ TOTP code generation from authenticator seed
+- ✅ Azure AD authentication with MFA
+- ✅ MFA prompt detection (multiple strategies)
+- ✅ Standalone authentication testing
+- ✅ Seed validation and testing utilities
+- ✅ Comprehensive documentation
+
+**Current Status:**
+- **Phase 1:** ✅ Authentication module complete and tested
+- **Phase 2:** 🚧 bc-replay integration in progress
+- **Phase 3:** 📋 Full workflow testing planned
+
+### Quick Start
+
+**1. Install dependencies:**
+```powershell
+cd bc-replay
+npm install
+```
+
+**2. Set up environment:**
+```powershell
+# Copy template
+copy setup-local-env.ps1.template setup-local-env.ps1
+
+# Edit with your credentials (see MFA_SETUP_GUIDE.md for getting TOTP seed)
+# Then load:
+. .\setup-local-env.ps1
+```
+
+**3. Test authentication:**
+```powershell
+.\npx-run-mfa.ps1 -TestAuthOnly
+```
+
+**4. Run scripts (when integration complete):**
+```powershell
+.\npx-run-mfa.ps1 -ScriptsPath ".\recordings\*.yml"
+```
+
+### Documentation
+
+**For detailed setup instructions:**
+- 📖 **[MFA_SETUP_GUIDE.md](MFA_SETUP_GUIDE.md)** - Complete setup guide for clients
+- 📖 **[README-MFA.md](README-MFA.md)** - Technical implementation overview
+- 📖 **[MFA-QUICK-REFERENCE.md](MFA-QUICK-REFERENCE.md)** - Quick reference card
+
+**Key files:**
+- `mfa-auth.js` - Core authentication module
+- `test-mfa-auth.js` - Standalone test script
+- `npx-run-mfa.ps1` - PowerShell wrapper
+- `totp-seed-helper.js` - Seed validation utilities
+
+### How It Works
+
+**TOTP (Time-based One-Time Password):**
+1. During MFA setup, you extract the seed from the authenticator QR code
+2. Store seed securely in environment variable
+3. Our script generates the same codes as Microsoft Authenticator
+4. Codes are submitted automatically during authentication
+5. BC scripts run normally in authenticated session
+
+**Technical Details:**
+- Industry-standard RFC 6238 TOTP algorithm
+- 30-second time windows (standard)
+- 6-digit codes (Microsoft default)
+- Multiple MFA prompt detection strategies
+- Comprehensive error handling
+
+### Security
+
+**✅ Best Practices:**
+- Seeds stored in environment variables
+- Template file for local development (in .gitignore)
+- Authenticator app kept as backup
+- Separate test accounts required
+
+**⚠️ Never:**
+- Commit seeds to Git
+- Use production accounts
+- Share seeds via email/chat
+
+### Utilities
+
+**Validate your seed:**
+```powershell
+node totp-seed-helper.js validate "YOUR_SEED"
+```
+
+**Generate test codes:**
+```powershell
+node totp-seed-helper.js generate "YOUR_SEED" 5
+```
+
+**Parse OTPAuth URL:**
+```powershell
+node totp-seed-helper.js parse "otpauth://totp/..."
+```
+
+### Next Steps
+
+**Current Phase:** Researching bc-replay integration architecture
+
+**Options being evaluated:**
+1. Playwright wrapper (authenticate first, then call bc-replay)
+2. Browser context sharing (pass authenticated context to bc-replay)
+3. Fork bc-replay (add native MFA support)
+
+**Recommendation:** Option 1 (wrapper) for fastest delivery
+
+**Want to help test?** See `MFA_SETUP_GUIDE.md` for instructions!

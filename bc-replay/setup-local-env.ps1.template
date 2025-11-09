@@ -1,0 +1,46 @@
+# BC-Replay MFA - Local Environment Setup Template
+# 
+# INSTRUCTIONS:
+# 1. Copy this file to: setup-local-env.ps1 (it's in .gitignore)
+# 2. Replace the placeholder values with your actual credentials
+# 3. Run: . .\setup-local-env.ps1
+# 4. Test: .\npx-run-mfa.ps1 -TestAuthOnly
+#
+# SECURITY WARNING:
+# - This file contains sensitive credentials
+# - NEVER commit this file to Git (it's protected by .gitignore)
+# - Use secure password managers for team sharing
+# - Rotate credentials regularly
+
+# Azure AD Credentials
+$env:BC_USERNAME = "YOUR_TEST_ACCOUNT@yourtenant.onmicrosoft.com"
+$env:BC_PASSWORD = "YOUR_PASSWORD_HERE"
+
+# TOTP Seed (from authenticator app setup)
+# This is a base32-encoded string like: JBSWY3DPEHPK3PXP
+$env:BC_MFA_SEED = "YOUR_TOTP_SEED_HERE"
+
+# Business Central URL
+# Format: https://businesscentral.dynamics.com/{TENANT_ID}/{ENVIRONMENT_NAME}
+# Example: https://businesscentral.dynamics.com/12345678-abcd-1234-abcd-123456789012/Sandbox
+$env:BC_URL = "YOUR_BC_URL_HERE"
+
+# Optional: Set other environment variables
+# $env:BC_RESULT_DIR = ".\results"
+# $env:BC_SCRIPTS_PATH = ".\recordings\*.yml"
+
+Write-Host "✅ Environment variables configured" -ForegroundColor Green
+Write-Host ""
+Write-Host "Test authentication:" -ForegroundColor Cyan
+Write-Host "   .\npx-run-mfa.ps1 -TestAuthOnly" -ForegroundColor Gray
+Write-Host ""
+Write-Host "Run scripts:" -ForegroundColor Cyan
+Write-Host "   .\npx-run-mfa.ps1 -ScriptsPath '.\recordings\*.yml'" -ForegroundColor Gray
+Write-Host ""
+
+# Secure password input (alternative method)
+# Uncomment these lines to use secure password prompt:
+#
+# $securePassword = Read-Host -AsSecureString "Enter password for BC_USERNAME"
+# $env:BC_PASSWORD = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($securePassword))
+# Write-Host "✅ Password set securely" -ForegroundColor Green
