@@ -1,0 +1,181 @@
+name: BASE Recording 2
+description: Test recording
+telemetryId: 13420011-33b8-4655-812a-ee639e8dea92
+start:
+  profile: BUSINESS MANAGER
+steps:
+  - type: invoke
+    target:
+      - page: Business Manager Role Center
+        runtimeRef: b0
+      - action: <Page Purchase Order>
+    description: Invoke <caption>Purchase Order</caption>
+  - type: page-shown
+    source:
+      page: Purchase Order
+    modal: false
+    runtimeId: b29y
+    description: Page <caption>New - Purchase Order</caption> was shown.
+  - type: focus
+    target:
+      - page: Purchase Order
+        runtimeRef: b29y
+      - field: Buy-from Vendor No.
+    description: Focus <caption>Vendor No.</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b29y
+      - field: Buy-from Vendor No.
+    value: "1000"
+    isFilterAsYouType: true
+    description: Input <value>1000</value> into <caption>Vendor No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:Buy-from Vendor No.
+    modal: false
+    runtimeId: b2sp
+    description: Page <caption>Select</caption> was shown.
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b29y
+      - field: Buy-from Vendor No.
+    value: "1000"
+    description: Input <value>1000</value> into <caption>Vendor No.</caption>
+  - type: page-closed
+    source:
+      page: lookup:Buy-from Vendor No.
+    runtimeId: b2sp
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b29y
+      - field: Location Code
+    value: MAIN
+    isFilterAsYouType: true
+    description: Input <value>MAIN</value> into <caption>Location Code</caption>
+  - type: page-shown
+    source:
+      page: lookup:Location Code
+    modal: false
+    runtimeId: b2ug
+    description: Page <caption>Select</caption> was shown.
+  - type: close-page
+    target:
+      - page: lookup:Location Code
+        runtimeRef: b2ug
+    description: Close page <caption>Select</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b29y
+      - field: Location Code
+    value: MAIN
+    description: Input <value>MAIN</value> into <caption>Location Code</caption>
+  - type: page-closed
+    source:
+      page: lookup:Location Code
+    runtimeId: b2ug
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b29y
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    value: ""
+    isFilterAsYouType: true
+    description: Input <value></value> into <caption>No.</caption>
+  - type: focus
+    target:
+      - page: Purchase Order
+        runtimeRef: b29y
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    description: Focus <caption>No.</caption>
+  - type: page-shown
+    source:
+      page: lookup:No.
+    modal: false
+    runtimeId: b2ux
+    description: Page <caption>Select</caption> was shown.
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b29y
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    value: 1900-S
+    isFilterAsYouType: true
+    description: Input <value>1900-S</value> into <caption>No.</caption>
+  - type: close-page
+    target:
+      - page: lookup:No.
+        runtimeRef: b2ux
+    description: Close page <caption>Select</caption>
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b29y
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: No.
+    value: 1900-S
+    description: Input <value>1900-S</value> into <caption>No.</caption>
+  - type: page-closed
+    source:
+      page: lookup:No.
+    runtimeId: b2ux
+    description: Page <caption>Select</caption> was closed.
+  - type: input
+    target:
+      - page: Purchase Order
+        runtimeRef: b29y
+      - part: PurchLines
+      - page: Purchase Order Subform
+      - repeater: Control1
+      - field: Quantity
+    value: "1"
+    description: Input <value>1</value> into <caption>Quantity</caption>
+  - type: invoke
+    target:
+      - page: Purchase Order
+        runtimeRef: b29y
+      - action: Post
+    parameters: {}
+    description: Invoke <caption>Post...</caption>
+  - type: page-shown
+    source:
+      page: null
+      automationId: 8da61efd-0002-0003-0507-0b0d1113171d
+      caption: Choose
+    modal: true
+    runtimeId: b2vq
+    description: Page <caption>Choose</caption> was shown.
+  - type: invoke
+    target:
+      - page: null
+        automationId: 8da61efd-0002-0003-0507-0b0d1113171d
+        caption: Choose
+        runtimeRef: b2vq
+    invokeType: Ok
+    description: Invoke Ok on <caption>Choose</caption>
+  - type: page-closed
+    source:
+      page: null
+    runtimeId: b2vq
+    description: Page <caption>Choose</caption> was closed.
+  - type: page-closed
+    source:
+      page: Purchase Order
+    runtimeId: b29y
+    description: Page <caption>Purchase Order</caption> was closed.

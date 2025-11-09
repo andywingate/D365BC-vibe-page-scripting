@@ -91,12 +91,14 @@ Use `Generate-BC-Script-Variants-Enhanced.ps1` for large-scale generation:
 - Process docs: `[ProcessName] Simple Process.md`
 - Data files: `var-vendors`, `var-items`, `var-locations` (text files, one value per line)
 
+### Output Folder
+- Save a PS Variants created in a "PS Variants folder
+
 ### Quality Gates
 - **Never generate without reference examples** - recordings must exist first
 - **Test single variant before bulk generation** - validate pattern works
 - **MANDATORY: Manual test after small batch** - run at least one generated script with bc-replay
 - **Verify substitutions** - check vendor, item, and location values are correctly replaced
-- **Clean artifacts**: Remove `isFilterAsYouType`, lookup page events
 - **Dependencies first**: Set Ship-to before Location Code access
 - **Start small, scale up**: Use `-BatchSize 1-10` for testing, then increase for production
 
