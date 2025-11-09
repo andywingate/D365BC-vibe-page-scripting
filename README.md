@@ -8,9 +8,9 @@ This repository contains comprehensive guidance and resources for generating rel
 
 **New to this project?** Follow these steps:
 
-1. **Review Structure** - Understand the project organization with multiple PO Post preparation folders
-2. **Study Examples** - Review the various `PO Post Prep-X/` folders for working patterns
-3. **Create Project Folder** - Set up a new subfolder with required files (BASE script, data files, documentation)
+1. **Review Structure** - Understand the organization: `page-scripting/` for script generation, `bc-replay/` for test execution
+2. **Study Examples** - Review the `page-scripting/PO Post DirectionsEMEA/` folders for working patterns
+3. **Create Project Folder** - Set up a new subfolder in `page-scripting/` with required files (BASE script, data files, documentation)
 4. **Use the Template** - Copy the complete prompt template (see below) for your AI session
 5. **Follow the Workflow** - Work through the 6-step methodology systematically
 
@@ -22,7 +22,7 @@ This repository contains comprehensive guidance and resources for generating rel
 
 **Before using this repository:**
 
-1. **Update Authentication Files** - Replace placeholder credentials in `npx-run.ps1` files with your actual test account details
+1. **Update Authentication Files** - Replace placeholder credentials in `bc-replay/npx-run.ps1` with your actual test account details
 2. **Configure Your Environment** - Update the BC URL with your tenant and environment name
 3. **Use Relative Paths** - The scripts use relative paths; adjust if your folder structure differs
 4. **Protect Credentials** - Never commit actual passwords or sensitive credentials to version control
@@ -39,71 +39,28 @@ This repository contains comprehensive guidance and resources for generating rel
 
 ### 📁 Repository Organization
 
-```
-BC/
-├── Generate-BC-Script-Variants.ps1     # PowerShell automation script
-├── npx-run.ps1                         # Script execution helper
-├── GETTING_STARTED.md                  # 📖 Start here for step-by-step guidance
-├── SECURITY.md                         # 🔒 Security guidelines and setup
-├── README.md                           # This file
-│
-├── PO Post Prep-1/                     # Project preparation folder 1
-│   ├── Items                           # Item codes for variants
-│   ├── Locations                       # Location codes for variants
-│   ├── PO Post test BASE.yml           # Base script template
-│   ├── PO Post Simple Process.md       # Business process documentation
-│   ├── PO Post Simple Prompt.md        # AI prompt template
-│   └── Variants/                       # Generated script variations
-│       ├── PO Post test Variant-1896S-BLUE.yml
-│       ├── PO Post test Variant-1896S-EAST.yml
-│       ├── PO Post test Variant-1900S-MAIN.yml
-│       └── ... (multiple variants)
-│
-├── PO Post Prep-2/                     # Project preparation folder 2
-│   ├── Items                           # Item codes for variants
-│   ├── Locations                       # Location codes for variants
-│   ├── PO POST Simple.yml              # Base script
-│   ├── PO Post Simple Process.md       # Process documentation
-│   ├── PO Post Simple Prompt.md        # AI prompt
-│   └── PO POST Simple Variant-*.yml    # Generated variants
-│
-├── PO Post Prep-3/                     # Raw recordings and test scripts
-│   ├── Itemcodes.txt                   # Test item data
-│   ├── PO create and post - *.yml      # Various test scripts
-│   ├── Add lines - Recording.yml       # Recording examples
-│   └── ... (multiple recordings and variants)
-│
-├── PO Post Prep-3 PS Variants/         # Enhanced PS variant generation
-│   ├── Generate-BC-Script-Variants-Enhanced.ps1
-│   ├── npx-run.ps1
-│   ├── PO Post test BASE.yml
-│   ├── PO Post Simple Process.md
-│   ├── PO Post Simple Prompt.md
-│   ├── PS script copilot-instructions.md
-│   ├── var-items                       # Item variations
-│   ├── var-locations                   # Location variations
-│   ├── var-vendors                     # Vendor variations
-│   └── Variants/                       # Generated scripts and analysis
-│       ├── AI_Analysis_Guide.md
-│       ├── AI_Quick_Reference.md
-│       ├── BC_Test_Results_Analysis.md
-│       ├── Quick_Analysis.ps1
-│       └── ... (multiple generated variants)
-│
-└── PO Post SCS/                        # 🎯 SCS demonstration project
-    ├── BASE Recording.yml              # Base recording
-    ├── Items                           # Item data
-    ├── Locations                       # Location data
-    ├── PO Post Simple Process.md       # Process docs
-    ├── PO Post Simple Prompt.md        # Prompt template
-    └── Variants/                       # Generated variants
-        └── PO Post test Variant-1896S-BLUE.yml
-```
+The repository is organized into two main areas:
 
-**Key Organization:**
-- **Root Level Files**: Core automation scripts and documentation
-- **PO Post Prep-X Folders**: Different preparation stages/approaches for PO posting automation
-- **Each Project Folder Contains**: BASE script, data files (Items/Locations), process documentation, and generated variants
+**Root Level:**
+- Documentation (`GETTING_STARTED.md`, `SECURITY.md`, `README.md`)
+
+**`page-scripting/`** - Script generation and variant automation
+- PowerShell automation scripts (`Generate-BC-Script-Variants.ps1`, `EXAMPLE Generate-BC-Script-Variants-Enhanced.ps1`)
+- Project folders for different BC processes:
+  - **`PO Post DirectionsEMEA/`** - Standard 2D variant generation example (Items × Locations)
+  - **`PO Post DirectionsEMEA - Volume/`** - Volume 3D variant generation example (Vendors × Items × Locations)
+- Each project folder contains: BASE recording, data files, process documentation, AI prompt template, and Variants output folder
+
+**`bc-replay/`** - Test execution and reporting
+- Script execution helper (`npx-run.ps1`)
+- Test runner configuration and utilities
+
+### Standard vs Volume Generation
+
+- **Standard (2D):** Use `Items` and `Locations` files to create a 2D cartesian set of variants from a single BASE recording
+- **Volume (3D):** Use `var-vendors`, `var-items`, and `var-locations` files to produce a 3D cartesian set for broad coverage across vendors and sites
+
+**Note:** Ensure the BASE script targets only the variable value fields; do not change YAML structure when creating variants.
 
 ### Project Subfolder Requirements
 
@@ -111,7 +68,6 @@ Each BC page scripting project should have its own subfolder containing:
 
 1. **BASE Script File** (`*.yml`)
    - Tested base recording that works successfully
-   - Clean pattern with artifacts removed
    - Serves as template for variant generation
 
 2. **Process Documentation File** (`PO Post Simple Process.md`)
@@ -147,7 +103,7 @@ Each BC page scripting project should have its own subfolder containing:
    - Never implement BC actions without a reference recording
    - If you don't have an example, ask the user to provide one
    - Follow the exact pattern shown in examples, don't improvise
-   - Always prefer the clean pattern unless specifically told otherwise
+   - Use recordings as close to those generated by BC as possible - only change specific field values (items, locations, vendors) or where using known patterns
 
 1. **ESSENTIAL PATTERNS FOR SUCCESS**
 
@@ -212,19 +168,19 @@ Each BC page scripting project should have its own subfolder containing:
    - Start with simple scripts and build complexity gradually
    - Test each new action type with a reference example first
    - If something fails, request a new recording of that specific action
-   - Clean up successful recordings by removing artifacts
+   - Do NOT modify YAML structure - only change specific field values
 
 7. **SCRIPT VARIANTS**
    - Use parameterization for item codes, vendor numbers, etc.
-   - Create templates that can be easily modified for different scenarios
-   - Keep both raw and clean versions for reference
+   - Only substitute specific field values - preserve all YAML structure
+   - Keep BASE recording as the source of truth
 
 ### 📋 Pre-Implementation Checklist
 - [ ] Do I have a reference recording for each action?
-- [ ] Have I removed all recording artifacts?
+- [ ] Have I preserved the YAML structure exactly as recorded?
 - [ ] Are field dependencies properly set?
 - [ ] Does the script follow established patterns?
-- [ ] Have I tested incremental complexity?
+- [ ] Have I only changed known variable fields (items, locations)?
 
 ### 🎯 Success Metrics
 - Scripts execute without errors
@@ -237,26 +193,26 @@ Each BC page scripting project should have its own subfolder containing:
 
 ## 🔧 PowerShell Automation
 
-The repository includes PowerShell scripts for automating variant generation:
+The repository includes PowerShell scripts for automating variant generation in the `page-scripting/` folder:
 
 ### Generate-BC-Script-Variants.ps1
-Located at root level, this script automates the creation of multiple test script variations from:
+This script automates the creation of multiple test script variations from:
 - A BASE recording YAML file
 - Data files containing field values (Items, Locations, Vendors, etc.)
 
 **Usage:**
 ```powershell
+cd page-scripting
 .\Generate-BC-Script-Variants.ps1
 ```
 
 **Enhanced Version:**
-`PO Post Prep-3 PS Variants/Generate-BC-Script-Variants-Enhanced.ps1` provides additional features:
-- Improved error handling
-- Detailed logging
-- Variant validation
-- Support for multiple data file types (var-items, var-locations, var-vendors)
+`EXAMPLE Generate-BC-Script-Variants-Enhanced.ps1` adds:
+- Improved error handling and detailed logging
+- Variant validation before write
+- Built-in support for `var-items`, `var-locations`, and `var-vendors`
 
-See `PO Post Prep-3 PS Variants/PS script copilot-instructions.md` for AI-assisted PowerShell development guidance.
+The volume project (`PO Post DirectionsEMEA - Volume/`) demonstrates the multi-dimension variant approach and includes `PS script copilot-instructions.md` with AI-assisted PowerShell development guidance.
 
 ## 🐛 Troubleshooting Guide
 
@@ -265,7 +221,6 @@ See `PO Post Prep-3 PS Variants/PS script copilot-instructions.md` for AI-assist
 | Issue | Cause | Solution |
 |-------|-------|----------|
 | Field not found/visible | Missing dependency (e.g., Ship-to option not set) | Set all field dependencies before accessing dependent fields |
-| Lookup page artifacts | Raw recording includes FilterAsYouType events | Remove `isFilterAsYouType` and lookup page events for clean script |
 | Multiple line entry fails | Using "New Line" action instead of set-current-row | Use `set-current-row` with `targetRecord: relative: 1` |
 | Script works once then fails | Runtime references change between sessions | Ensure runtimeRef values are consistent across recordings |
 | Data values mismatch | CSV file doesn't match BC test environment | Verify all Items, Locations, Vendors exist in test company |
@@ -274,7 +229,7 @@ See `PO Post Prep-3 PS Variants/PS script copilot-instructions.md` for AI-assist
 - [ ] All prerequisite data exists in BC (vendors, items, locations)
 - [ ] Test-Runner account has proper permissions
 - [ ] Dependencies set before accessing dependent fields
-- [ ] Clean patterns used (artifacts removed)
+- [ ] YAML structure preserved as closely to original as possible from recorded example scripts
 - [ ] BASE script tested successfully before creating variants
 
 ## 🎯 Project Workflow
@@ -282,8 +237,8 @@ See `PO Post Prep-3 PS Variants/PS script copilot-instructions.md` for AI-assist
 ### Starting a New BC Page Scripting Project
 
 1. **Create Project Subfolder**
-   - Name: `PO Post [Description]` (e.g., "PO Post SCS", "PO Post Prep-4")
-   - Location: At repository root level
+   - Name: `PO Post [Description]` (e.g., "PO Post SCS", "PO Post Inventory")
+   - Location: Inside `page-scripting/` folder
 
 2. **Setup Project Files**
    - Create `PO Post Simple Process.md` with business process documentation
@@ -308,11 +263,8 @@ See `PO Post Prep-3 PS Variants/PS script copilot-instructions.md` for AI-assist
 
 ### Existing Project Examples
 
-- **PO Post Prep-1/**: Complete example with BASE script, data files, and generated variants
-- **PO Post Prep-2/**: Alternative approach with simplified structure
-- **PO Post Prep-3/**: Raw recordings and multiple test script iterations
-- **PO Post Prep-3 PS Variants/**: Enhanced PowerShell automation with analysis tools
-- **PO Post SCS/**: SCS demonstration project
+- **`page-scripting/PO Post DirectionsEMEA/`** - Clean reference with BASE + Items + Locations and a working variant
+- **`page-scripting/PO Post DirectionsEMEA - Volume/`** - Volume generation with `var-vendors`, `var-items`, `var-locations` producing large variant sets
 
 ## 🎯 Complete Prompt Template for Future BC Page Script Generation
 
@@ -395,11 +347,13 @@ MAIN
 - Follow the 6-step methodology
 - Request example recordings for new actions
 - Build complexity gradually
+- Ensure each generated script has a unique `telemetryId` (the provided generators do this)
+- Prefer filename-safe values in data files; avoid OS-reserved characters. Punctuation like periods is allowed but may clutter variant names—normalize if desired.
 
 ### Don'ts ❌
 - Don't skip testing the BASE script
 - Don't create variants without validating the pattern first
-- Don't use CSV field values that don't exist in BC
+- Don't use CSV/text field values that don't exist in BC
 - Don't improvise BC action patterns without examples
 - Don't batch generate scripts without testing one first
 - Don't forget to update documentation
@@ -407,14 +361,14 @@ MAIN
 ## 🎓 Learning Path
 
 **For New Users:**
-1. Start with `PO Post Prep-1/` - Review complete project structure
-2. Study `PO Post Prep-3 PS Variants/` - Enhanced automation example
+1. Start with `page-scripting/PO Post DirectionsEMEA/` - Review complete project structure
+2. Study `page-scripting/PO Post DirectionsEMEA - Volume/` - Enhanced automation with 3D variants
 3. Review `GETTING_STARTED.md` for detailed walkthrough
-4. Practice with a new project folder at root level
+4. Practice with a new project folder in `page-scripting/`
 
 **For Experienced Users:**
-- Use `Generate-BC-Script-Variants.ps1` for automation
-- Explore `Generate-BC-Script-Variants-Enhanced.ps1` for advanced features
+- Use `page-scripting/Generate-BC-Script-Variants.ps1` for automation
+- Explore `page-scripting/EXAMPLE Generate-BC-Script-Variants-Enhanced.ps1` for advanced features
 - Contribute proven patterns back to the repository
 - Help document new field patterns and gotchas
 
@@ -436,9 +390,8 @@ MAIN
 
 ### Internal Documentation
 - [SECURITY.md](SECURITY.md) - **Important:** Security guidelines and setup instructions
-- `PO Post Prep-1/` - ⭐ Complete reference project with variants
-- `PO Post Prep-3/` - Raw recordings and test script examples
-- `PO Post Prep-3 PS Variants/PS script copilot-instructions.md` - PowerShell development guide
+- `page-scripting/PO Post DirectionsEMEA/` - ⭐ Standard 2D variant generation reference project
+- `page-scripting/PO Post DirectionsEMEA - Volume/` - Volume 3D variant generation with PowerShell development guide
 - Individual project folders for specific business processes and approaches
 
 ## 📞 Support & Contribution
@@ -456,6 +409,21 @@ MAIN
 
 ---
 
-**Version:** 1.1  
-**Last Updated:** October 2025  
+## Changelog
+
+**Version 1.2 (November 2025)**
+- Reorganized repository into `page-scripting/` and `bc-replay/` folders for clearer separation of concerns
+- Updated repository structure to reflect `PO Post DirectionsEMEA` and `PO Post DirectionsEMEA - Volume`
+- Documented Volume (3D) variant generation with `var-vendors`
+- Added guidance on `telemetryId` uniqueness and filename safety
+- Pointed to Enhanced generator script in `page-scripting/` folder
+- Refreshed examples and best practices
+
+**Version 1.1 (October 2025)**
+- Initial comprehensive guide
+
+---
+
+**Version:** 1.2  
+**Last Updated:** November 2025  
 **Maintainer:** Project Team
