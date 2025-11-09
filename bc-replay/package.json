@@ -20,9 +20,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@microsoft/bc-replay": "^0.1.76",
     "otplib": "^12.0.1",
     "playwright": "^1.40.0",
     "qrcode": "^1.5.3"
-  },
-  "devDependencies": {}
+  }
 }
