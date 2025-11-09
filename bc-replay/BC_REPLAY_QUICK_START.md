@@ -75,7 +75,7 @@ npx replay .\recordings\*.yml `
 npx replay .\recordings\*.yml -StartAddress http://localhost:8080/bc
 ```
 
-**Azure AD / User Password:**
+**Microsoft Entra ID / User Password:**
 ```powershell
 # Set credentials as environment variables
 $env:BC_USERNAME = "testuser@yourtenant.onmicrosoft.com"
@@ -334,7 +334,7 @@ npx playwright show-report .\results\playwright-report
 ### ✅ What's Included
 
 - **TOTP code generation** - Automatic generation of authenticator codes from seed
-- **Azure AD MFA integration** - Seamless authentication with BC SaaS
+- **Microsoft Entra ID MFA integration** - Seamless authentication with BC SaaS
 - **Complete solution** - Ready-to-use scripts and documentation
 - **Secure by design** - Credentials in environment variables, never committed
 
@@ -359,11 +359,11 @@ Follow the detailed step-by-step guide in `bc-replay-mfa-solution/` or the main 
 
 **Step-by-step with images:**
 
-**Step 1: Create Test User in Azure AD**
+**Step 1: Create Test User in Microsoft Entra ID**
 
-![Create Azure AD User - Placeholder](images/mfa-setup-01-create-user.png)
+![Create Entra ID User - Placeholder](images/mfa-setup-01-create-user.png)
 
-Navigate to Azure AD > Users > New user and create your test account.
+Navigate to Microsoft Entra ID > Users > New user and create your test account.
 
 **Step 2: Enable TOTP Authentication Method**
 

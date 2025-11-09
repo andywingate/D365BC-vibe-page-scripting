@@ -72,14 +72,14 @@ This project includes a **production-ready solution** for testing with BC accoun
 If your organization requires MFA for all accounts, you can set up a test account with TOTP (Authenticator app) authentication and use it with the MFA solution above.
 
 ### Prerequisites
-- Azure AD/Microsoft 365 administrator access
+- Microsoft Entra ID (formerly Azure AD) administrator access
 - Ability to create test users
 - Access to Security Info setup during account creation
 
 ### Step-by-Step TOTP Account Setup
 
-1. **Create a Test User in Azure AD**
-   - Navigate to Azure AD > Users > New user
+1. **Create a Test User in Microsoft Entra ID**
+   - Navigate to Microsoft Entra ID > Users > New user
    - Create user with username (e.g., `bctest@yourtenant.onmicrosoft.com`)
    - Set temporary password
    - Grant appropriate BC permissions

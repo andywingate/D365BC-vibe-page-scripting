@@ -155,7 +155,7 @@ This way you maintain a clean version-controlled template while keeping your act
 If your organization requires MFA for test accounts, you can use the included TOTP solution instead of requesting MFA exceptions.
 
 **Quick Setup:**
-1. Create a test account in Azure AD/Microsoft 365
+1. Create a test account in Microsoft Entra ID (formerly Azure AD)
 2. Enable TOTP authentication (Authenticator app method)
 3. ⚠️ **CRITICAL:** Capture the TOTP seed during setup - it's **ONLY shown ONCE!** (see detailed instructions in [README.md](README.md#-setting-up-totp-for-test-accounts))
 4. Store the seed securely for use with bc-replay MFA solution
