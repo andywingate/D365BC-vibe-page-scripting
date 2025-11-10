@@ -38,9 +38,35 @@ The script automatically:
 
 ### 3. Get Your TOTP Seed
 
-⚠️ **CRITICAL:** Capture your TOTP seed during account MFA setup - you can NEVER retrieve it later!
+⚠️ **CRITICAL:** Capture your TOTP seed during account MFA setup - you can't extract it later!
 
-See the main [project README](../../README.md#-setting-up-totp-for-test-accounts) for complete TOTP account setup instructions with screenshots.
+**Here are the steps:**
+
+1. **Ensure your test account has MFA enabled/enforced and Software OAUTH is an allowed method.**
+
+   ![Entra ID Authentication Methods settings showing Software OATH tokens enabled](.assets/image.png)
+
+2. **Using an inprivate/incognito browser, start the MFA setup process for your test account.**
+
+3. **During MFA setup, choose "I want to set up a different method" and select Authenticator app.**
+
+   ![Microsoft security info page with setup different method option](.assets/image-1.png)
+
+   ![Microsoft authenticator app setup start page with Next button](.assets/image-2.png)
+
+4. **When the QR code appears, click "Can't scan image?" to reveal the secret key.**
+
+   ![QR code screen with "Can't scan image?" link](.assets/image-3.png)
+
+   ![Alternative view of QR code setup screen](.assets/image-4.png)
+
+5. **Copy the secret key (TOTP seed) that is displayed - this is your BC_MFA_SEED value.**
+
+   ![Secret key displayed in text format for manual entry into authenticator app](.assets/image-5.png)
+
+6. **Add the seed to a suitable authenticator app (Microsoft Authenticator, Authy, etc.) to verify it generates codes correctly.**
+
+7. **Save the seed in a password manager or secure notes app for future use with bc-replay.**
 
 ### 4. Create Test Script
 
