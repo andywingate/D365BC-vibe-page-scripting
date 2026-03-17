@@ -40,7 +40,7 @@ npx playwright show-report
 
 1. BC account with TOTP MFA enabled (authenticator app)
 2. The TOTP seed from account setup (one-time capture - see solution docs)
-3. Standard bc-replay installation
+3. Standard bc-replay installation **plus `otplib`** (`npm install otplib --save`)
 4. 5 minutes to apply the patch
 
 ### What It Does

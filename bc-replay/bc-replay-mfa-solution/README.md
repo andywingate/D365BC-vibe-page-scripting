@@ -24,6 +24,8 @@ cd bc-replay
 npm install @microsoft/bc-replay otplib --save
 ```
 
+> **Note:** `otplib` is a required dependency for TOTP code generation. If you already have bc-replay installed, you must still run the above command (or `npm install otplib --save`) separately. Skipping this step will result in the error: `MFA handling error: Cannot find module 'otplib'`.
+
 ### 2. Apply MFA Patch (Automated)
 ```powershell
 cd bc-replay-mfa-solution
@@ -139,6 +141,11 @@ Clicked Verify and navigated
 | `BC_MFA_SEED` | Yes (MFA accounts) | Base32 TOTP seed from authenticator setup |
 
 ## Troubleshooting
+
+### "Cannot find module 'otplib'" error
+- Run `npm install otplib --save` in the `bc-replay` folder
+- This package is required for TOTP code generation and must be installed separately if you already had bc-replay installed before setting up the MFA solution
+- Verify it was installed: `npm list otplib` (should show a version number)
 
 ### "MFA TOTP prompt detected" doesn't appear
 - Ensure MFA is actually enabled on the account

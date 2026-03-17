@@ -240,6 +240,7 @@ $env:BC_URL = "https://businesscentral.dynamics.com/tenant/sandbox"
 | Issue | Cause | Solution |
 |-------|-------|----------|
 | "Module not found" | bc-replay not installed | Run `npm i @microsoft/bc-replay --save` |
+| "Cannot find module 'otplib'" | otplib not installed | Run `npm install otplib --save` in the `bc-replay` folder |
 | "Authentication failed" | Wrong credentials or MFA blocking | Verify credentials; for MFA accounts use [bc-replay-mfa-solution](bc-replay-mfa-solution/) |
 | "Page not found" | Wrong BC URL | Verify `-StartAddress` URL is accessible |
 | Scripts pass locally but fail in pipeline | Different data in environments | Ensure test data exists in both environments |
